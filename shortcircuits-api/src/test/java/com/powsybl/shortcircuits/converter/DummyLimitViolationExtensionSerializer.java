@@ -1,0 +1,48 @@
+package com.powsybl.shortcircuits.converter;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.google.auto.service.AutoService;
+import com.powsybl.commons.extensions.ExtensionJsonSerializer;
+import com.powsybl.security.LimitViolation;
+
+import java.io.IOException;
+
+/**
+ * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
+ */
+@AutoService(ExtensionJsonSerializer.class)
+public class DummyLimitViolationExtensionSerializer implements ExtensionJsonSerializer<LimitViolation, ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension> {
+
+    @Override
+    public String getExtensionName() {
+        return "DummyLimitViolationExtension";
+    }
+
+    @Override
+    public String getCategoryName() {
+        return "security-analysis";
+    }
+
+    @Override
+    public Class<? super ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension> getExtensionClass() {
+        return ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension.class;
+    }
+
+    @Override
+    public void serialize(ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension extension, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeEndObject();
+    }
+
+    @Override
+    public ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
+        while (parser.nextToken() != JsonToken.END_OBJECT) {
+            continue;
+        }
+        return new ShortCircuitAnalysisResultExportersTest.DummyLimitViolationExtension();
+    }
+}
