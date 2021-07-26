@@ -95,8 +95,8 @@ public class ShortCircuitAnalysisTool implements Tool {
             JsonShortCircuitParameters.update(parameters, parametersFile);
         }
 
-        ShortCircuitAnalyzer shortCircuitAnalyzer = new ShortCircuitAnalyzer(computationManager);
-        ShortCircuitAnalysisResult shortCircuitAnalysisResult = shortCircuitAnalyzer.analyze(network, parameters);
+        ShortCircuitAnalysisResult shortCircuitAnalysisResult = ShortCircuitAnalysis.runAsync(network, parameters, computationManager).join();
+
         if (shortCircuitAnalysisResult != null) {
             if (outputFile != null) {
                 context.getOutputStream().println("Writing results to '" + outputFile + "'");
