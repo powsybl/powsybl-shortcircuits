@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.powsybl.tools.Tool;
 
-public class ShortCircuitAnalysisToolTest extends AbstractToolTest {
+public class ShortCircuitsAnalysisToolTest extends AbstractToolTest {
 
     private ShortCircuitAnalysisTool shortCircuitTool;
 

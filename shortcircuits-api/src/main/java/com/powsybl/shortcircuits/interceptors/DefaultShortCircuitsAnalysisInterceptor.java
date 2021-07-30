@@ -3,12 +3,12 @@ package com.powsybl.shortcircuits.interceptors;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.shortcircuits.FaultResult;
-import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
 /**
  * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
-public class DefaultShortCircuitAnalysisInterceptor implements ShortCircuitAnalysisInterceptor {
+public class DefaultShortCircuitsAnalysisInterceptor implements ShortCircuitsAnalysisInterceptor {
 
     @Override
     public void onFaultResult(Network network, FaultResult faultResult) {
@@ -21,7 +21,7 @@ public class DefaultShortCircuitAnalysisInterceptor implements ShortCircuitAnaly
     }
 
     @Override
-    public void onShortCircuitResult(Network network, ShortCircuitAnalysisResult shortCircuitAnalysisResult) {
+    public void onShortCircuitResult(Network network, ShortCircuitsAnalysisResult shortCircuitsAnalysisResult) {
         // Nothing to do
     }
 }

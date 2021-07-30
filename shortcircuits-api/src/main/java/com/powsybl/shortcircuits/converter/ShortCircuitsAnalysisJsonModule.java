@@ -7,25 +7,25 @@ import com.powsybl.security.json.LimitViolationDeserializer;
 import com.powsybl.security.json.LimitViolationSerializer;
 import com.powsybl.security.json.NetworkMetadataDeserializer;
 import com.powsybl.security.json.NetworkMetadataSerializer;
-import com.powsybl.shortcircuits.ShortCircuitParameters;
-import com.powsybl.shortcircuits.json.ShortCircuitParametersDeserializer;
-import com.powsybl.shortcircuits.json.ShortCircuitParametersSerializer;
+import com.powsybl.shortcircuits.ShortCircuitsParameters;
+import com.powsybl.shortcircuits.json.ShortCircuitsParametersDeserializer;
+import com.powsybl.shortcircuits.json.ShortCircuitsParametersSerializer;
 import com.powsybl.shortcircuits.FaultResult;
-import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
-public class ShortCircuitAnalysisJsonModule extends SimpleModule {
+public class ShortCircuitsAnalysisJsonModule extends SimpleModule {
 
-    public ShortCircuitAnalysisJsonModule() {
+    public ShortCircuitsAnalysisJsonModule() {
         addSerializer(LimitViolation.class, new LimitViolationSerializer());
         addDeserializer(LimitViolation.class, new LimitViolationDeserializer());
         addSerializer(FaultResult.class, new FaultResultSerializer());
         addDeserializer(FaultResult.class, new FaultResultDeserializer());
-        addSerializer(ShortCircuitAnalysisResult.class, new ShortCircuitAnalysisResultSerializer());
-        addDeserializer(ShortCircuitAnalysisResult.class, new ShortCircuitAnalysisResultDeserializer());
+        addSerializer(ShortCircuitsAnalysisResult.class, new ShortCircuitsAnalysisResultSerializer());
+        addDeserializer(ShortCircuitsAnalysisResult.class, new ShortCircuitsAnalysisResultDeserializer());
         addSerializer(NetworkMetadata.class, new NetworkMetadataSerializer());
         addDeserializer(NetworkMetadata.class, new NetworkMetadataDeserializer());
-        addSerializer(ShortCircuitParameters.class, new ShortCircuitParametersSerializer());
-        addDeserializer(ShortCircuitParameters.class, new ShortCircuitParametersDeserializer());
+        addSerializer(ShortCircuitsParameters.class, new ShortCircuitsParametersSerializer());
+        addDeserializer(ShortCircuitsParameters.class, new ShortCircuitsParametersDeserializer());
     }
 
 }

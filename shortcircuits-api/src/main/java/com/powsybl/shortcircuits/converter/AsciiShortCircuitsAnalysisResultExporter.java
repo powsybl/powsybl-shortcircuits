@@ -7,8 +7,8 @@ import com.powsybl.commons.io.table.TableFormatterFactory;
 /**
  * Exports a short circuit analysis result as an ASCII formatted table.
  */
-@AutoService(ShortCircuitAnalysisResultExporter.class)
-public class AsciiShortCircuitAnalysisResultExporter extends AbstractTableShortCircuitAnalysisResultExporter {
+@AutoService(ShortCircuitsAnalysisResultExporter.class)
+public class AsciiShortCircuitsAnalysisResultExporter extends AbstractTableShortCircuitsAnalysisResultExporter {
 
     private static final TableFormatterFactory FACTORY = new AsciiTableFormatterFactory();
 

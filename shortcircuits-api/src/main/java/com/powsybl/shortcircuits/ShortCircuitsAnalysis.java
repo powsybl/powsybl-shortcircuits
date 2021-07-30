@@ -13,9 +13,9 @@ import java.util.concurrent.CompletableFuture;
 /**
  * API for short-circuit current computations.
  */
-public final class ShortCircuitAnalysis {
+public final class ShortCircuitsAnalysis {
 
-    private ShortCircuitAnalysis() {
+    private ShortCircuitsAnalysis() {
         throw new AssertionError("Utility class should not been instantiated");
     }
 
@@ -26,9 +26,9 @@ public final class ShortCircuitAnalysis {
             this.provider = Objects.requireNonNull(provider);
         }
 
-        public CompletableFuture<ShortCircuitAnalysisResult> runAsync(Network network,
-                                                                      ShortCircuitParameters parameters,
-                                                                      ComputationManager computationManager) {
+        public CompletableFuture<ShortCircuitsAnalysisResult> runAsync(Network network,
+                                                                       ShortCircuitsParameters parameters,
+                                                                       ComputationManager computationManager) {
             Objects.requireNonNull(network, "Network should not be null");
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
             Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
@@ -62,8 +62,8 @@ public final class ShortCircuitAnalysis {
         return find(null);
     }
 
-    public static CompletableFuture<ShortCircuitAnalysisResult> runAsync(Network network, ShortCircuitParameters parameters,
-                                                                         ComputationManager computationManager) {
+    public static CompletableFuture<ShortCircuitsAnalysisResult> runAsync(Network network, ShortCircuitsParameters parameters,
+                                                                          ComputationManager computationManager) {
         return find().runAsync(network, parameters, computationManager);
     }
 

@@ -5,7 +5,7 @@ import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.security.LimitViolationType;
 import com.powsybl.shortcircuits.FaultResult;
-import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class ShortCircuitAnalysisResultExportersTest extends AbstractConverterTest {
+public class ShortCircuitsAnalysisResultExportersTest extends AbstractConverterTest {
 
     @Test
     public void testGetFormats() {
@@ -29,7 +29,7 @@ public class ShortCircuitAnalysisResultExportersTest extends AbstractConverterTe
         assertEquals("JSON", ShortCircuitAnalysisResultExporters.getExporter("JSON").getFormat());
     }
 
-    private static ShortCircuitAnalysisResult createResult() {
+    private static ShortCircuitsAnalysisResult createResult() {
         List<FaultResult> faultResults = new ArrayList<>();
         FaultResult faultResult = new FaultResult("faultResultID", 1);
         faultResults.add(faultResult);
@@ -41,10 +41,10 @@ public class ShortCircuitAnalysisResultExportersTest extends AbstractConverterTe
         float value = 2500;
         LimitViolation limitViolation = new LimitViolation(subjectId, limitType, limit, limitReduction, value);
         limitViolations.add(limitViolation);
-        return new ShortCircuitAnalysisResult(faultResults, limitViolations);
+        return new ShortCircuitsAnalysisResult(faultResults, limitViolations);
     }
 
-    private static ShortCircuitAnalysisResult createResultWithExtension() {
+    private static ShortCircuitsAnalysisResult createResultWithExtension() {
         List<FaultResult> faultResults = new ArrayList<>();
         FaultResult faultResult = new FaultResult("faultResultID", 1);
         faultResult.addExtension(DummyFaultResultExtension.class, new DummyFaultResultExtension());
@@ -58,25 +58,25 @@ public class ShortCircuitAnalysisResultExportersTest extends AbstractConverterTe
         LimitViolation limitViolation = new LimitViolation(subjectId, limitType, limit, limitReduction, value);
         limitViolation.addExtension(DummyLimitViolationExtension.class, new DummyLimitViolationExtension());
         limitViolations.add(limitViolation);
-        ShortCircuitAnalysisResult shortCircuitAnalysisResult =  new ShortCircuitAnalysisResult(faultResults, limitViolations);
-        shortCircuitAnalysisResult.addExtension(DummyShortCircuitAnalysisResultExtension.class, new DummyShortCircuitAnalysisResultExtension());
-        return shortCircuitAnalysisResult;
+        ShortCircuitsAnalysisResult shortCircuitsAnalysisResult =  new ShortCircuitsAnalysisResult(faultResults, limitViolations);
+        shortCircuitsAnalysisResult.addExtension(DummyShortCircuitAnalysisResultExtension.class, new DummyShortCircuitAnalysisResultExtension());
+        return shortCircuitsAnalysisResult;
     }
 
-    public void writeJson(ShortCircuitAnalysisResult results, Path path) {
+    public void writeJson(ShortCircuitsAnalysisResult results, Path path) {
         ShortCircuitAnalysisResultExporters.export(results, path, "JSON", null);
     }
 
     @Test
     public void testWriteJson() throws IOException {
-        ShortCircuitAnalysisResult result = createResultWithExtension();
+        ShortCircuitsAnalysisResult result = createResultWithExtension();
         writeTest(result, this::writeJson, AbstractConverterTest::compareTxt, "/shortcircuits-with-extensions-results.json");
     }
 
     @Test
     public void roundTripJson() throws IOException {
-        ShortCircuitAnalysisResult result = createResultWithExtension();
-        roundTripTest(result, this::writeJson, ShortCircuitAnalysisResultDeserializer::read, "/shortcircuits-with-extensions-results.json");
+        ShortCircuitsAnalysisResult result = createResultWithExtension();
+        roundTripTest(result, this::writeJson, ShortCircuitsAnalysisResultDeserializer::read, "/shortcircuits-with-extensions-results.json");
     }
 
     static class DummyFaultResultExtension extends AbstractExtension<FaultResult> {
@@ -95,7 +95,7 @@ public class ShortCircuitAnalysisResultExportersTest extends AbstractConverterTe
         }
     }
 
-    static class DummyShortCircuitAnalysisResultExtension extends AbstractExtension<ShortCircuitAnalysisResult> {
+    static class DummyShortCircuitAnalysisResultExtension extends AbstractExtension<ShortCircuitsAnalysisResult> {
 
         @Override
         public String getName() {

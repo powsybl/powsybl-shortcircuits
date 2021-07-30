@@ -14,23 +14,23 @@ import com.powsybl.commons.extensions.ExtensionProviders;
  * Generic parameters for short circuit-computations.
  * May contain extensions for implementation-specific parameters.
  */
-public class ShortCircuitParameters extends AbstractExtendable<ShortCircuitParameters> {
+public class ShortCircuitsParameters extends AbstractExtendable<ShortCircuitsParameters> {
 
-    public interface ConfigLoader<E extends Extension<ShortCircuitParameters>>
-            extends ExtensionConfigLoader<ShortCircuitParameters, E> {
+    public interface ConfigLoader<E extends Extension<ShortCircuitsParameters>>
+            extends ExtensionConfigLoader<ShortCircuitsParameters, E> {
     }
 
     private static final Supplier<ExtensionProviders<ConfigLoader>> SUPPLIER = Suppliers
             .memoize(() -> ExtensionProviders.createProvider(ConfigLoader.class, "short-circuit-parameters"));
 
-    public static ShortCircuitParameters load() {
+    public static ShortCircuitsParameters load() {
         return load(PlatformConfig.defaultConfig());
     }
 
-    public static ShortCircuitParameters load(PlatformConfig platformConfig) {
+    public static ShortCircuitsParameters load(PlatformConfig platformConfig) {
         Objects.requireNonNull(platformConfig);
 
-        ShortCircuitParameters parameters = new ShortCircuitParameters();
+        ShortCircuitsParameters parameters = new ShortCircuitsParameters();
         parameters.readExtensions(platformConfig);
 
         return parameters;

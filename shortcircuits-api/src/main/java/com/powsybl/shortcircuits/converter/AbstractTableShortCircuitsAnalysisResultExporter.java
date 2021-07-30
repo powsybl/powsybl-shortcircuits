@@ -13,9 +13,9 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.security.LimitViolationHelper;
 import com.powsybl.shortcircuits.FaultResult;
-import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
-public abstract class AbstractTableShortCircuitAnalysisResultExporter implements ShortCircuitAnalysisResultExporter {
+public abstract class AbstractTableShortCircuitsAnalysisResultExporter implements ShortCircuitsAnalysisResultExporter {
 
     protected abstract TableFormatterFactory getTableFormatterFactory();
 
@@ -24,7 +24,7 @@ public abstract class AbstractTableShortCircuitAnalysisResultExporter implements
     }
 
     @Override
-    public void export(ShortCircuitAnalysisResult result, Writer writer, Network network) {
+    public void export(ShortCircuitsAnalysisResult result, Writer writer, Network network) {
         Objects.requireNonNull(result);
         Objects.requireNonNull(writer);
         TableFormatterFactory tableFormatterFactory = getTableFormatterFactory();
@@ -33,8 +33,8 @@ public abstract class AbstractTableShortCircuitAnalysisResultExporter implements
         printLimitViolationResults(result, writer, tableFormatterFactory, tableFormatterConfig, network);
     }
 
-    private static void printShortCircuitResults(ShortCircuitAnalysisResult result, Writer writer,
-            TableFormatterFactory formatterFactory, TableFormatterConfig formatterConfig) {
+    private static void printShortCircuitResults(ShortCircuitsAnalysisResult result, Writer writer,
+                                                 TableFormatterFactory formatterFactory, TableFormatterConfig formatterConfig) {
         Objects.requireNonNull(result);
         Objects.requireNonNull(writer);
         Objects.requireNonNull(formatterFactory);
@@ -50,8 +50,8 @@ public abstract class AbstractTableShortCircuitAnalysisResultExporter implements
         }
     }
 
-    private static void printLimitViolationResults(ShortCircuitAnalysisResult result, Writer writer,
-            TableFormatterFactory formatterFactory, TableFormatterConfig formatterConfig, Network network) {
+    private static void printLimitViolationResults(ShortCircuitsAnalysisResult result, Writer writer,
+                                                   TableFormatterFactory formatterFactory, TableFormatterConfig formatterConfig, Network network) {
         Objects.requireNonNull(result);
         Objects.requireNonNull(writer);
         Objects.requireNonNull(formatterFactory);

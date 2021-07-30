@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.google.auto.service.AutoService;
 import com.powsybl.commons.extensions.ExtensionJsonSerializer;
-import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
 @AutoService(ExtensionJsonSerializer.class)
-public class DummyShortCircuitAnalysisResultExtensionSerializer implements ExtensionJsonSerializer<ShortCircuitAnalysisResult, ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension> {
+public class DummyShortCircuitAnalysisResultExtensionSerializer implements ExtensionJsonSerializer<ShortCircuitsAnalysisResult, ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension> {
 
     @Override
     public String getExtensionName() {
@@ -28,21 +28,21 @@ public class DummyShortCircuitAnalysisResultExtensionSerializer implements Exten
     }
 
     @Override
-    public Class<? super ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension> getExtensionClass() {
-        return ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension.class;
+    public Class<? super ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension> getExtensionClass() {
+        return ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension.class;
     }
 
     @Override
-    public void serialize(ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension extension, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension extension, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeEndObject();
     }
 
     @Override
-    public ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension deserialize(JsonParser parser, DeserializationContext deserializationContext)  throws IOException {
+    public ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension deserialize(JsonParser parser, DeserializationContext deserializationContext)  throws IOException {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             continue;
         }
-        return new ShortCircuitAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension();
+        return new ShortCircuitsAnalysisResultExportersTest.DummyShortCircuitAnalysisResultExtension();
     }
 }

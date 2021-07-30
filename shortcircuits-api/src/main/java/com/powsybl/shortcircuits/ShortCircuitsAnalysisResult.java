@@ -13,7 +13,7 @@ import java.util.Objects;
  * Will contain an exhaustive list of computed short-circuit current values,
  * and a list of {@link LimitViolation}s.
  */
-public class ShortCircuitAnalysisResult extends AbstractExtendable<ShortCircuitAnalysisResult> {
+public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuitsAnalysisResult> {
 
     private NetworkMetadata networkMetadata;
 
@@ -21,7 +21,7 @@ public class ShortCircuitAnalysisResult extends AbstractExtendable<ShortCircuitA
 
     private final List<LimitViolation> limitViolations;
 
-    public ShortCircuitAnalysisResult(List<FaultResult> faultResults, List<LimitViolation> limitViolations) {
+    public ShortCircuitsAnalysisResult(List<FaultResult> faultResults, List<LimitViolation> limitViolations) {
         this.faultResults = Objects.requireNonNull(faultResults);
         this.limitViolations = Objects.requireNonNull(limitViolations);
     }
@@ -45,7 +45,7 @@ public class ShortCircuitAnalysisResult extends AbstractExtendable<ShortCircuitA
         return networkMetadata;
     }
 
-    public ShortCircuitAnalysisResult setNetworkMetadata(NetworkMetadata networkMetadata) {
+    public ShortCircuitsAnalysisResult setNetworkMetadata(NetworkMetadata networkMetadata) {
         this.networkMetadata = networkMetadata;
         return this;
     }

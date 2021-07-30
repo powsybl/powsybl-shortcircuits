@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
 @AutoService(ExtensionJsonSerializer.class)
-public class DummyFaultResultExtensionSerializer implements ExtensionJsonSerializer<FaultResult, ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension> {
+public class DummyFaultResultExtensionSerializer implements ExtensionJsonSerializer<FaultResult, ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension> {
 
     @Override
     public String getExtensionName() {
@@ -28,21 +28,21 @@ public class DummyFaultResultExtensionSerializer implements ExtensionJsonSeriali
     }
 
     @Override
-    public Class<? super ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension> getExtensionClass() {
-        return ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension.class;
+    public Class<? super ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension> getExtensionClass() {
+        return ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension.class;
     }
 
     @Override
-    public void serialize(ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension extension, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension extension, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeEndObject();
     }
 
     @Override
-    public ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
+    public ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             continue;
         }
-        return new ShortCircuitAnalysisResultExportersTest.DummyFaultResultExtension();
+        return new ShortCircuitsAnalysisResultExportersTest.DummyFaultResultExtension();
     }
 }

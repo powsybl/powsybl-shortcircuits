@@ -16,11 +16,11 @@ import com.powsybl.commons.extensions.Extension;
 import com.powsybl.commons.extensions.ExtensionJsonSerializer;
 import com.powsybl.commons.extensions.ExtensionProviders;
 import com.powsybl.commons.json.JsonUtil;
-import com.powsybl.shortcircuits.ShortCircuitParameters;
-import com.powsybl.shortcircuits.converter.ShortCircuitAnalysisJsonModule;
+import com.powsybl.shortcircuits.ShortCircuitsParameters;
+import com.powsybl.shortcircuits.converter.ShortCircuitsAnalysisJsonModule;
 
-public final class JsonShortCircuitParameters {
-    public interface ExtensionSerializer<E extends Extension<ShortCircuitParameters>> extends ExtensionJsonSerializer<ShortCircuitParameters, E> {
+public final class JsonShortCircuitsParameters {
+    public interface ExtensionSerializer<E extends Extension<ShortCircuitsParameters>> extends ExtensionJsonSerializer<ShortCircuitsParameters, E> {
     }
 
     private static final Supplier<ExtensionProviders<ExtensionSerializer>> SUPPLIER =
@@ -30,11 +30,11 @@ public final class JsonShortCircuitParameters {
         return SUPPLIER.get();
     }
 
-    private JsonShortCircuitParameters() {
+    private JsonShortCircuitsParameters() {
 
     }
 
-    public static ShortCircuitParameters update(ShortCircuitParameters parameters, Path jsonFile) {
+    public static ShortCircuitsParameters update(ShortCircuitsParameters parameters, Path jsonFile) {
         Objects.requireNonNull(jsonFile);
 
         try (InputStream is = Files.newInputStream(jsonFile)) {
@@ -44,7 +44,7 @@ public final class JsonShortCircuitParameters {
         }
     }
 
-    public static ShortCircuitParameters update(ShortCircuitParameters parameters, InputStream is) {
+    public static ShortCircuitsParameters update(ShortCircuitsParameters parameters, InputStream is) {
         try {
             ObjectMapper objectMapper = createObjectMapper();
             return objectMapper.readerForUpdating(parameters).readValue(is);
@@ -54,10 +54,10 @@ public final class JsonShortCircuitParameters {
     }
 
     private static ObjectMapper createObjectMapper() {
-        return JsonUtil.createObjectMapper().registerModule(new ShortCircuitAnalysisJsonModule());
+        return JsonUtil.createObjectMapper().registerModule(new ShortCircuitsAnalysisJsonModule());
     }
 
-    public static void write(ShortCircuitParameters parameters, Path jsonFile) {
+    public static void write(ShortCircuitsParameters parameters, Path jsonFile) {
         Objects.requireNonNull(jsonFile);
 
         try (OutputStream outputStream = Files.newOutputStream(jsonFile)) {
@@ -67,7 +67,7 @@ public final class JsonShortCircuitParameters {
         }
     }
 
-    public static void write(ShortCircuitParameters parameters, OutputStream outputStream) {
+    public static void write(ShortCircuitsParameters parameters, OutputStream outputStream) {
         try {
             ObjectMapper objectMapper = createObjectMapper();
             ObjectWriter writer = objectMapper.writerWithDefaultPrettyPrinter();
@@ -77,11 +77,11 @@ public final class JsonShortCircuitParameters {
         }
     }
 
-    public static ShortCircuitParameters read(Path jsonFile) {
-        return update(new ShortCircuitParameters(), jsonFile);
+    public static ShortCircuitsParameters read(Path jsonFile) {
+        return update(new ShortCircuitsParameters(), jsonFile);
     }
 
-    public static ShortCircuitParameters read(InputStream jsonStream) {
-        return update(new ShortCircuitParameters(), jsonStream);
+    public static ShortCircuitsParameters read(InputStream jsonStream) {
+        return update(new ShortCircuitsParameters(), jsonStream);
     }
 }

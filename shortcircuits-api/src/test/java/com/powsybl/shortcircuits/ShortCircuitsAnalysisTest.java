@@ -3,7 +3,7 @@ package com.powsybl.shortcircuits;
 import com.powsybl.commons.PowsyblException;
 import com.powsybl.computation.ComputationManager;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.interceptors.ShortCircuitAnalysisInterceptor;
+import com.powsybl.shortcircuits.interceptors.ShortCircuitsAnalysisInterceptor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,24 +29,24 @@ public class ShortCircuitsAnalysisTest {
             }
 
             @Override
-            public void addInterceptor(final ShortCircuitAnalysisInterceptor interceptor) {
+            public void addInterceptor(final ShortCircuitsAnalysisInterceptor interceptor) {
 
             }
 
             @Override
-            public boolean removeInterceptor(final ShortCircuitAnalysisInterceptor interceptor) {
+            public boolean removeInterceptor(final ShortCircuitsAnalysisInterceptor interceptor) {
                 return false;
             }
 
             @Override
-            public CompletableFuture<ShortCircuitAnalysisResult> run(Network network, ShortCircuitParameters parameters,
-                                                              ComputationManager computationManager) {
+            public CompletableFuture<ShortCircuitsAnalysisResult> run(Network network, ShortCircuitsParameters parameters,
+                                                                      ComputationManager computationManager) {
 
-                return CompletableFuture.supplyAsync(() -> new ShortCircuitAnalysisResult(Collections.emptyList(), Collections.emptyList()));
+                return CompletableFuture.supplyAsync(() -> new ShortCircuitsAnalysisResult(Collections.emptyList(), Collections.emptyList()));
             }
         };
 
-        ShortCircuitAnalysisResult res = provider.run(null, null, null).join();
+        ShortCircuitsAnalysisResult res = provider.run(null, null, null).join();
 
         assertTrue(res.getFaultResults().size() == 0);
         assertTrue(res.getLimitViolations().size() == 0);
@@ -54,6 +54,6 @@ public class ShortCircuitsAnalysisTest {
 
     @Test
     public void shortCircuitAnalysisWithDefaultProvider() {
-        Assert.assertThrows(PowsyblException.class, () -> ShortCircuitAnalysis.runAsync(null, null, null));
+        Assert.assertThrows(PowsyblException.class, () -> ShortCircuitsAnalysis.runAsync(null, null, null));
     }
 }

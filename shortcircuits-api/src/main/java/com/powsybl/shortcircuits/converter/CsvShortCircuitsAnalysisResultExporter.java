@@ -7,8 +7,8 @@ import com.powsybl.commons.io.table.TableFormatterFactory;
 /**
  * Exports a short circuit analysis result in CSV format.
  */
-@AutoService(ShortCircuitAnalysisResultExporter.class)
-public class CsvShortCircuitAnalysisResultExporter extends AbstractTableShortCircuitAnalysisResultExporter {
+@AutoService(ShortCircuitsAnalysisResultExporter.class)
+public class CsvShortCircuitsAnalysisResultExporter extends AbstractTableShortCircuitsAnalysisResultExporter {
 
     private static final TableFormatterFactory FACTORY = new CsvTableFormatterFactory();
 
