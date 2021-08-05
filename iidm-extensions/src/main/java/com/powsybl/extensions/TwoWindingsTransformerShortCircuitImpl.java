@@ -45,7 +45,8 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
     public TwoWindingsTransformerShortCircuitImpl(boolean isPartOfGeneratorUnit, double b0Leg1, double b0Leg2, connectionKind connectionKindLeg1,
                                                   connectionKind connectionKindLeg2, double g0Leg1, double g0Leg2, boolean groundedLeg1, boolean groundedLeg2,
                                                   double r0Leg1, double r0Leg2, double x0Leg1, double x0Leg2, double rgroundLeg1, double rgroundLeg2,
-                                                  double xgroundLeg1, double xgroundLeg2) {
+                                                  double xgroundLeg1, double xgroundLeg2, TwoWindingsTransformer twt) {
+        super(twt);
         this.isPartOfGeneratorUnit = isPartOfGeneratorUnit;
         this.b0Leg1 = b0Leg1;
         this.b0Leg2 = b0Leg2;
