@@ -34,7 +34,7 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
 
     public void setSatDirectSubtranX(double satDirectSubtranX);
 
-    public double getGetSatDirectSyncX();
+    public double getSatDirectSyncX();
 
     public void setGetSatDirectSyncX(double getSatDirectSyncX);
 

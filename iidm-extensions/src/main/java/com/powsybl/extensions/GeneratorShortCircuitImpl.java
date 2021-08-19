@@ -15,21 +15,23 @@ import com.powsybl.iidm.network.Generator;
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> implements GeneratorShortCircuit {
-    private boolean earthing; // earthed or not
-    private double r0; // resistance
-    private double r2; // resistance
-    private double satDirectSubtranX; // reactance
-    private double getSatDirectSyncX; // reactance
-    private double satDirectTransX; // reactance
-    private double x0; // reactance
-    private double x2; // reactance
+    private boolean earthing; // Indicates whether or not the generator is earthed
+    private double r0; // Zero sequence resistance
+    private double r2; // Negative sequence resistance
+    private double satDirectSubtranX; // Direct-axis subtransient reactance saturated
+    private double satDirectSyncX; // Direct-axes saturated synchronous reactance (xdsat)
+    private double satDirectTransX; // Saturated Direct-axis transient reactance
+    private double x0; // Zero sequence reactance
+    private double x2; // Negative sequence reactance
 
-    public GeneratorShortCircuitImpl(boolean earthing, double r0, double r2, double satDirectSubtranX, double getSatDirectSyncX, double satDirectTransX, double x0, double x2) {
+    public GeneratorShortCircuitImpl(boolean earthing, double r0, double r2, double satDirectSubtranX, double satDirectSyncX,
+                                     double satDirectTransX, double x0, double x2, Generator gen) {
+        super(gen);
         this.earthing = earthing;
         this.r0 = r0;
         this.r2 = r2;
         this.satDirectSubtranX = satDirectSubtranX;
-        this.getSatDirectSyncX = getSatDirectSyncX;
+        this.satDirectSyncX = satDirectSyncX;
         this.satDirectTransX = satDirectTransX;
         this.x0 = x0;
         this.x2 = x2;
@@ -76,13 +78,13 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public double getGetSatDirectSyncX() {
-        return getSatDirectSyncX;
+    public double getSatDirectSyncX() {
+        return satDirectSyncX;
     }
 
     @Override
-    public void setGetSatDirectSyncX(double getSatDirectSyncX) {
-        this.getSatDirectSyncX = getSatDirectSyncX;
+    public void setGetSatDirectSyncX(double satDirectSyncX) {
+        this.satDirectSyncX = satDirectSyncX;
     }
 
     @Override
