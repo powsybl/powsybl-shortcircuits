@@ -27,4 +27,8 @@ public interface ShortCircuitsAnalysisProvider extends Versionable, PlatformConf
                                                                ComputationManager computationManager) {
         return ShortCircuitsAnalysis.runAsync(network, parameters, computationManager);
     }
+
+    default ShortCircuitsAnalysisResult run(Network network) {
+        return ShortCircuitsAnalysis.run(network);
+    }
 }

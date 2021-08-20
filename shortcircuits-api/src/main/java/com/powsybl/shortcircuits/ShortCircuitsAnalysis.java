@@ -41,6 +41,11 @@ public final class ShortCircuitsAnalysis {
             return provider.run(network, parameters, computationManager);
         }
 
+        public ShortCircuitsAnalysisResult run(Network network) {
+            Objects.requireNonNull(network, "Network should not be null");
+            return provider.run(network);
+        }
+
         @Override
         public String getName() {
             return provider.getName();
@@ -73,4 +78,7 @@ public final class ShortCircuitsAnalysis {
         return find().runAsync(network, parameters, computationManager);
     }
 
+    public static ShortCircuitsAnalysisResult run(Network network) {
+        return find().run(network);
+    }
 }
