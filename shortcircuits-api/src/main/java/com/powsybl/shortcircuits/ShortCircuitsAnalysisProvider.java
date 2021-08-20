@@ -14,6 +14,9 @@ import com.powsybl.shortcircuits.interceptors.ShortCircuitsAnalysisInterceptor;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Bertrand Rix <bertrand.rix at artelys.com>
+ */
 public interface ShortCircuitsAnalysisProvider extends Versionable, PlatformConfigNamedProvider {
 
     void addInterceptor(ShortCircuitsAnalysisInterceptor interceptor);

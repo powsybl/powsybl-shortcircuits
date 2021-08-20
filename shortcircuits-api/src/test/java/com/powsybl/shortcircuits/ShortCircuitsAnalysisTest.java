@@ -18,6 +18,9 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Bertrand Rix <bertrand.rix at artelys.com>
+ */
 public class ShortCircuitsAnalysisTest {
 
     @Test
