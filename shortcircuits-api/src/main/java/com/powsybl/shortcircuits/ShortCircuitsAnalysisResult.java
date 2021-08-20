@@ -10,6 +10,7 @@ import com.powsybl.commons.extensions.AbstractExtendable;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.security.NetworkMetadata;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -23,13 +24,13 @@ public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuit
 
     private NetworkMetadata networkMetadata;
 
-    private final List<FaultResult> faultResults;
+    private final List<FaultResult> faultResults = new ArrayList<>();
 
-    private final List<LimitViolation> limitViolations;
+    private final List<LimitViolation> limitViolations = new ArrayList<>();
 
     public ShortCircuitsAnalysisResult(List<FaultResult> faultResults, List<LimitViolation> limitViolations) {
-        this.faultResults = Objects.requireNonNull(faultResults);
-        this.limitViolations = Objects.requireNonNull(limitViolations);
+        this.faultResults.addAll(Objects.requireNonNull(faultResults));
+        this.limitViolations.addAll(Objects.requireNonNull(limitViolations));
     }
 
     /**
