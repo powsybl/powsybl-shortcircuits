@@ -37,10 +37,6 @@
         </plugins>
     </build>
 
-    <properties>
-        <module.private>true</module.private>
-    </properties>
-
     <dependencies>
         <!-- Compilaton dependencies -->
         <dependency>
