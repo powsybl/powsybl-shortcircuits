@@ -6,7 +6,6 @@
  */
 package com.powsybl.extensions;
 
-import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.commons.extensions.Extension;
 import com.powsybl.iidm.network.Connectable;
 
