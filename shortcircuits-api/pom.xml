@@ -44,15 +44,15 @@
             <artifactId>guava</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-commons</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-computation</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-security-analysis-api</artifactId>
         </dependency>
 
@@ -63,18 +63,18 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-commons</artifactId>
             <scope>test</scope>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-iidm-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.powsybl</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>powsybl-tools</artifactId>
             <scope>test</scope>
             <type>test-jar</type>
