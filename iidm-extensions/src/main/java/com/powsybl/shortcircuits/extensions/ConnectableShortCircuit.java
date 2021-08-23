@@ -15,7 +15,7 @@ import com.powsybl.iidm.network.Connectable;
 public interface ConnectableShortCircuit extends Extension<Connectable> {
     @Override
     default String getName() {
-        return "busBarSectionShortCircuit";
+        return "connectableShortCircuit";
     }
 
     /**
