@@ -19,6 +19,9 @@ import com.powsybl.commons.AbstractConverterTest;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.shortcircuits.ShortCircuitsParameters;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public class JsonShortCircuitsParametersTest extends AbstractConverterTest {
 
     @Test

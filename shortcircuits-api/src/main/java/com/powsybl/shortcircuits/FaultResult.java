@@ -12,6 +12,8 @@ import java.util.Objects;
 
 /**
  * Results for one fault computation.
+ *
+ * @author Boubakeur Brahimi
  */
 public final class FaultResult extends AbstractExtendable<FaultResult> {
 

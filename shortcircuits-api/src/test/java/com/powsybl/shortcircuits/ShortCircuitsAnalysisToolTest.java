@@ -13,6 +13,9 @@ import org.junit.Test;
 
 import com.powsybl.tools.Tool;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public class ShortCircuitsAnalysisToolTest extends AbstractToolTest {
 
     private ShortCircuitAnalysisTool shortCircuitTool;

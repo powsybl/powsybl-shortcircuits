@@ -19,6 +19,8 @@ import java.util.Objects;
  * Results of a short-circuit computation.
  * Will contain an exhaustive list of computed short-circuit current values,
  * and a list of {@link LimitViolation}s.
+ *
+ * @author Boubakeur Brahimi
  */
 public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuitsAnalysisResult> {
 

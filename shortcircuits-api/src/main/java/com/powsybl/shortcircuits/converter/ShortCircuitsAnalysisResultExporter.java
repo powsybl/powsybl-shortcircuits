@@ -14,6 +14,8 @@ import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
 /**
  * Implementations provide a method to write down the content of a {@link ShortCircuitsAnalysisResult}.
+ *
+ * @author Boubakeur Brahimi
  */
 public interface ShortCircuitsAnalysisResultExporter {
 

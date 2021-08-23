@@ -21,6 +21,9 @@ import com.powsybl.security.LimitViolationHelper;
 import com.powsybl.shortcircuits.FaultResult;
 import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public abstract class AbstractTableShortCircuitsAnalysisResultExporter implements ShortCircuitsAnalysisResultExporter {
 
     protected abstract TableFormatterFactory getTableFormatterFactory();

@@ -25,6 +25,9 @@ import com.powsybl.commons.json.JsonUtil;
 import com.powsybl.shortcircuits.ShortCircuitsParameters;
 import com.powsybl.shortcircuits.converter.ShortCircuitsAnalysisJsonModule;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public final class JsonShortCircuitsParameters {
     public interface ExtensionSerializer<E extends Extension<ShortCircuitsParameters>> extends ExtensionJsonSerializer<ShortCircuitsParameters, E> {
     }

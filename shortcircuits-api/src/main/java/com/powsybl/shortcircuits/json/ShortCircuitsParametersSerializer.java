@@ -14,6 +14,9 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.powsybl.commons.json.JsonUtil;
 import com.powsybl.shortcircuits.ShortCircuitsParameters;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public class ShortCircuitsParametersSerializer extends StdSerializer<ShortCircuitsParameters> {
 
     public ShortCircuitsParametersSerializer() {

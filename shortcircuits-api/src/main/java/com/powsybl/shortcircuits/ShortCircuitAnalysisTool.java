@@ -26,6 +26,9 @@ import com.powsybl.tools.ToolRunningContext;
 import com.powsybl.shortcircuits.converter.ShortCircuitAnalysisResultExporters;
 import com.powsybl.shortcircuits.json.JsonShortCircuitsParameters;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 @AutoService(Tool.class)
 public class ShortCircuitAnalysisTool implements Tool {
 

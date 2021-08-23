@@ -18,6 +18,9 @@ import com.powsybl.commons.extensions.Extension;
 import com.powsybl.commons.json.JsonUtil;
 import com.powsybl.shortcircuits.ShortCircuitsParameters;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public class ShortCircuitsParametersDeserializer extends StdDeserializer<ShortCircuitsParameters> {
 
     public ShortCircuitsParametersDeserializer() {

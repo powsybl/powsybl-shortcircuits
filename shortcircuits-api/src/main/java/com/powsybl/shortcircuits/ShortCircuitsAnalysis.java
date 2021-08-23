@@ -18,6 +18,8 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * API for short-circuit current computations.
+ *
+ * @author Boubakeur Brahimi
  */
 public final class ShortCircuitsAnalysis {
 

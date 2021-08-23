@@ -12,6 +12,8 @@ import com.powsybl.commons.io.table.TableFormatterFactory;
 
 /**
  * Exports a short circuit analysis result as an ASCII formatted table.
+ *
+ * @author Boubakeur Brahimi
  */
 @AutoService(ShortCircuitsAnalysisResultExporter.class)
 public class AsciiShortCircuitsAnalysisResultExporter extends AbstractTableShortCircuitsAnalysisResultExporter {

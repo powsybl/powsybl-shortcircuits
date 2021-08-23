@@ -18,6 +18,8 @@ import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
 /**
  * Exports a short circuit analysis result in JSON format.
+ *
+ * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
 @AutoService(ShortCircuitsAnalysisResultExporter.class)
 public class JsonShortCircuitsAnalysisResultExporter implements ShortCircuitsAnalysisResultExporter {

@@ -19,6 +19,9 @@ import com.powsybl.shortcircuits.json.ShortCircuitsParametersSerializer;
 import com.powsybl.shortcircuits.FaultResult;
 import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
+/**
+ * @author Boubakeur Brahimi
+ */
 public class ShortCircuitsAnalysisJsonModule extends SimpleModule {
 
     public ShortCircuitsAnalysisJsonModule() {

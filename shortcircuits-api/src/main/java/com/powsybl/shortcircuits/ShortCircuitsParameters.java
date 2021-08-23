@@ -19,6 +19,8 @@ import com.powsybl.commons.extensions.ExtensionProviders;
 /**
  * Generic parameters for short circuit-computations.
  * May contain extensions for implementation-specific parameters.
+ *
+ * @author Boubakeur Brahimi
  */
 public class ShortCircuitsParameters extends AbstractExtendable<ShortCircuitsParameters> {
 

@@ -23,6 +23,8 @@ import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
 
 /**
  * Provides easy access to known implementations of result "exporters". ({@link ShortCircuitsAnalysisResultExporter})
+ *
+ * @author Boubakeur Brahimi
  */
 public final class ShortCircuitAnalysisResultExporters {
 

@@ -14,6 +14,9 @@ import com.powsybl.shortcircuits.FaultResult;
 
 import java.io.IOException;
 
+/**
+ * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
+ */
 public class FaultResultSerializer extends StdSerializer<FaultResult> {
 
     public FaultResultSerializer() {
