@@ -43,8 +43,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setEarthing(boolean earthing) {
+    public GeneratorShortCircuit setEarthing(boolean earthing) {
         this.earthing = earthing;
+        return this;
     }
 
     @Override
@@ -53,8 +54,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setR0(double r0) {
+    public GeneratorShortCircuit setR0(double r0) {
         this.r0 = r0;
+        return this;
     }
 
     @Override
@@ -63,8 +65,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setR2(double r2) {
+    public GeneratorShortCircuit setR2(double r2) {
         this.r2 = r2;
+        return this;
     }
 
     @Override
@@ -73,8 +76,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setSatDirectSubtranX(double satDirectSubtranX) {
+    public GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX) {
         this.satDirectSubtranX = satDirectSubtranX;
+        return this;
     }
 
     @Override
@@ -83,8 +87,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setGetSatDirectSyncX(double satDirectSyncX) {
+    public GeneratorShortCircuit setGetSatDirectSyncX(double satDirectSyncX) {
         this.satDirectSyncX = satDirectSyncX;
+        return this;
     }
 
     @Override
@@ -93,8 +98,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setSatDirectTransX(double satDirectTransX) {
+    public GeneratorShortCircuit setSatDirectTransX(double satDirectTransX) {
         this.satDirectTransX = satDirectTransX;
+        return this;
     }
 
     @Override
@@ -103,8 +109,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setX0(double x0) {
+    public GeneratorShortCircuit setX0(double x0) {
         this.x0 = x0;
+        return this;
     }
 
     @Override
@@ -113,8 +120,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public void setX2(double x2) {
+    public GeneratorShortCircuit setX2(double x2) {
         this.x2 = x2;
+        return this;
     }
 
 }

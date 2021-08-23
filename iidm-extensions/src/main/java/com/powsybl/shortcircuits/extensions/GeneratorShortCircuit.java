@@ -10,6 +10,7 @@ import com.powsybl.commons.extensions.Extension;
 import com.powsybl.iidm.network.Generator;
 
 /**
+ *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 public interface GeneratorShortCircuit extends Extension<Generator> {
@@ -18,36 +19,84 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
         return "generatorShortCircuit";
     }
 
-    public boolean isEarthing();
+    /**
+     * Get earthing status of the generator
+     */
+    boolean isEarthing();
 
-    public void setEarthing(boolean earthing);
+    /**
+     * Set the
+     */
+    GeneratorShortCircuit setEarthing(boolean earthing);
 
-    public double getR0();
+    /**
+     * Get the zero sequence resistance of the synchronous machine
+     */
+    double getR0();
 
-    public void setR0(double r0);
+    /**
+     * Set the zero sequence resistance of the synchronous machine
+     */
+    GeneratorShortCircuit setR0(double r0);
 
-    public double getR2();
+    /**
+     * Get the negative sequence resistance of the synchronous machine
+     */
+    double getR2();
 
-    public void setR2(double r2);
+    /**
+     * Set the negative sequence resistance of the synchronous machine
+     */
+    GeneratorShortCircuit setR2(double r2);
 
-    public double getSatDirectSubtranX();
+    /**
+     * Get the direct-axis subtransient reactance saturated (also known as Xd''sat)
+     */
+    double getSatDirectSubtranX();
 
-    public void setSatDirectSubtranX(double satDirectSubtranX);
+    /**
+     * Set the direct-axis subtransient reactance saturated (also known as Xd''sat)
+     */
+    GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX);
 
-    public double getSatDirectSyncX();
+    /**
+     * Get the direct-axis saturated synchronous reactance (also known as Xdsat)
+     */
+    double getSatDirectSyncX();
 
-    public void setGetSatDirectSyncX(double getSatDirectSyncX);
+    /**
+     * Set the direct-axis saturated synchronous reactance (also known as Xdsat)
+     */
+    GeneratorShortCircuit setGetSatDirectSyncX(double getSatDirectSyncX);
 
-    public double getSatDirectTransX();
+    /**
+     * Get the saturated direct-axis transient reactance
+     */
+    double getSatDirectTransX();
 
-    public void setSatDirectTransX(double satDirectTransX);
+    /**
+     * Set the saturated direct-axis transient reactance
+     */
+    GeneratorShortCircuit setSatDirectTransX(double satDirectTransX);
 
-    public double getX0();
+    /**
+     * Get the zero sequence reactance of the synchronous machine
+     */
+    double getX0();
 
-    public void setX0(double x0);
+    /**
+     * Set the zero sequence reactance of the synchronous machine
+     */
+    GeneratorShortCircuit setX0(double x0);
 
-    public double getX2();
+    /**
+     * Get the negative sequence reactance of the synchronous machine
+     */
+    double getX2();
 
-    public void setX2(double x2);
+    /**
+     * Get the negative sequence reactance of the synchronous machine
+     */
+    GeneratorShortCircuit setX2(double x2);
 
 }
