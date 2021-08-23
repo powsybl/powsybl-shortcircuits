@@ -13,8 +13,8 @@
 
     <parent>
         <groupId>com.powsybl</groupId>
-        <artifactId>powsybl-core</artifactId>
-        <version>4.2.0</version>
+        <artifactId>powsybl-shortcircuits</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>powsybl-shortcircuits-api</artifactId>
