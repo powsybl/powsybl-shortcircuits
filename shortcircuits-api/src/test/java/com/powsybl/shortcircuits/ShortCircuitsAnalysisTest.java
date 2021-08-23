@@ -53,22 +53,12 @@ public class ShortCircuitsAnalysisTest {
 
                 return CompletableFuture.supplyAsync(() -> new ShortCircuitsAnalysisResult(Collections.emptyList(), Collections.emptyList()));
             }
-
-            @Override
-            public ShortCircuitsAnalysisResult run(Network network) {
-                return new ShortCircuitsAnalysisResult(Collections.emptyList(), Collections.emptyList());
-            }
         };
 
         ShortCircuitsAnalysisResult res = provider.run(null, null, null).join();
 
         assertTrue(res.getFaultResults().size() == 0);
         assertTrue(res.getLimitViolations().size() == 0);
-
-        ShortCircuitsAnalysisResult res2 = provider.run(null);
-
-        assertTrue(res2.getFaultResults().size() == 0);
-        assertTrue(res2.getLimitViolations().size() == 0);
     }
 
     @Test

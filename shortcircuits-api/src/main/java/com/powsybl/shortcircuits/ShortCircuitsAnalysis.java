@@ -11,6 +11,7 @@ import com.powsybl.commons.Versionable;
 import com.powsybl.commons.config.PlatformConfig;
 import com.powsybl.commons.config.PlatformConfigNamedProvider;
 import com.powsybl.computation.ComputationManager;
+import com.powsybl.computation.local.LocalComputationManager;
 import com.powsybl.iidm.network.Network;
 
 import java.util.Objects;
@@ -20,6 +21,8 @@ import java.util.concurrent.CompletableFuture;
  * API for short-circuit current computations.
  *
  * @author Boubakeur Brahimi
+ * @author Bertrand Rix <bertrand.rix at artelys.com>
+ * @author Miora Ralambotiana <miora.ralambotiana at rte-france.com>
  */
 public final class ShortCircuitsAnalysis {
 
@@ -43,9 +46,20 @@ public final class ShortCircuitsAnalysis {
             return provider.run(network, parameters, computationManager);
         }
 
+        public ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters, ComputationManager computationManager) {
+            Objects.requireNonNull(network, "Network should not be null");
+            Objects.requireNonNull(computationManager, "ComputationManager should not be null");
+            Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
+            return provider.run(network, parameters, computationManager).join();
+        }
+
+        public ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters) {
+            return run(network, parameters, LocalComputationManager.getDefault());
+        }
+
         public ShortCircuitsAnalysisResult run(Network network) {
             Objects.requireNonNull(network, "Network should not be null");
-            return provider.run(network);
+            return run(network, ShortCircuitsParameters.load());
         }
 
         @Override
@@ -78,6 +92,14 @@ public final class ShortCircuitsAnalysis {
     public static CompletableFuture<ShortCircuitsAnalysisResult> runAsync(Network network, ShortCircuitsParameters parameters,
                                                                           ComputationManager computationManager) {
         return find().runAsync(network, parameters, computationManager);
+    }
+
+    public static ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters, ComputationManager computationManager) {
+        return find().run(network, parameters, computationManager);
+    }
+
+    public static ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters) {
+        return find().run(network, parameters);
     }
 
     public static ShortCircuitsAnalysisResult run(Network network) {
