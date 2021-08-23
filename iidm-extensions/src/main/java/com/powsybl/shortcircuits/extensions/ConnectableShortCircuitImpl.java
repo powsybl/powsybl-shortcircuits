@@ -28,8 +28,9 @@ public class ConnectableShortCircuitImpl extends AbstractExtension<Connectable> 
     }
 
     @Override
-    public void setIpMax(double ipMax) {
+    public ConnectableShortCircuit setIpMax(double ipMax) {
         this.ipMax = ipMax;
+        return this;
     }
 
     @Override
@@ -38,7 +39,8 @@ public class ConnectableShortCircuitImpl extends AbstractExtension<Connectable> 
     }
 
     @Override
-    public void setIpMin(double ipMin) {
+    public ConnectableShortCircuit setIpMin(double ipMin) {
         this.ipMin = ipMin;
+        return this;
     }
 }

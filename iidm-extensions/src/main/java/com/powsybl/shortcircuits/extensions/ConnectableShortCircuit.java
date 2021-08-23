@@ -18,11 +18,27 @@ public interface ConnectableShortCircuit extends Extension<Connectable> {
         return "busBarSectionShortCircuit";
     }
 
-    public double getIpMax();
+    /**
+     * Get the maximum allowable peak short-circuit current of the busbar.
+     * It represents the mechanical limit of the busbar in the substation itself.
+     */
+    double getIpMax();
 
-    public void setIpMax(double ipMax);
+    /**
+     * Set the maximum allowable peak short-circuit current of the busbar.
+     * It represents the mechanical limit of the busbar in the substation itself.
+     */
+    ConnectableShortCircuit setIpMax(double ipMax);
 
-    public double getIpMin();
+    /**
+     * Get the minimum allowable peak short-circuit current of the busbar.
+     * It represents the mechanical limit of the busbar in the substation itself.
+     */
+    double getIpMin();
 
-    public void setIpMin(double ipMin);
+    /**
+     * Set the maximum allowable peak short-circuit current of the busbar.
+     * It represents the mechanical limit of the busbar in the substation itself.
+     */
+    ConnectableShortCircuit setIpMin(double ipMin);
 }
