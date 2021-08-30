@@ -43,8 +43,9 @@ public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuit
     }
 
     /**
-     * The list of limit violations: for instance when the computed short-circuit current on a given equipment
-     * is higher than the maximum admissible value for that equipment.
+     * The list of limit violations: for instance when the computed short-circuit current on a given equipment is higher
+     * than the maximum admissible value for that equipment. In general, the equipment ID can be completed by the side where
+     * the violation occurs. In a first simple approach, the equipment is a voltage level, and no side is needed.
      */
     public List<LimitViolation> getLimitViolations() {
         return Collections.unmodifiableList(limitViolations);

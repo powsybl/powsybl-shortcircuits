@@ -27,14 +27,15 @@ public final class FaultResult extends AbstractExtendable<FaultResult> {
     }
 
     /**
-     * ID of the equipment for which a fault has been simulated.
+     * ID of the equipment for which a fault has been simulated. In a first simple approach, the equipment is a voltage
+     * level, and no side is needed.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Value of the 3-phase short-circuit current for this fault.
+     * Value of the 3-phase short-circuit current for this fault (in A).
      */
     public float getThreePhaseFaultCurrent() {
         return threePhaseFaultCurrent;
