@@ -22,43 +22,33 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     }
 
     /**
-     * Get the direct-axis subtransient reactance saturated (also known as Xd''sat)
+     * Get the direct-axis subtransient reactance (also known as X''d)
      */
-    double getSatDirectSubtranX();
+    double getDirectSubtransX();
 
     /**
-     * Set the direct-axis subtransient reactance saturated (also known as Xd''sat)
+     * Set the direct-axis subtransient reactance (also known as X''d)
      */
-    GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX);
+    GeneratorShortCircuit setDirectSubtransX(double directSubtransX);
 
     /**
-     * Get the saturated direct-axis transient reactance
+     * Get the direct-axis transient reactance (also known as X'd)
      */
-    double getSatDirectTransX();
+    double getDirectTransX();
 
     /**
-     * Set the saturated direct-axis transient reactance
+     * Set the direct-axis transient reactance (also known as X'd)
      */
-    GeneratorShortCircuit setSatDirectTransX(double satDirectTransX);
+    GeneratorShortCircuit setDirectTransX(double directTransX);
 
     /**
-     * Indicates whether the generator is linked to a transformer
+     * Get the step-up transformer reactance if the generator has a non-modeled step-up transformer.
      */
-    boolean isHasTransformer();
+    Optional<Double> getStepUpTransformerX();
 
     /**
-     * Set whether the generator is linked to a transformer or not
+     * Set the step-up transformer reactance
      */
-    GeneratorShortCircuit setHasTransformer(boolean hasTransformer);
-
-    /**
-     * Get the reactance of the transformer if hasTransformer is True
-     */
-    Optional<Double> getTransformerReactance();
-
-    /**
-     * Set the reactance of the transformer if hasTransformer is True
-     */
-    GeneratorShortCircuit setTransformerReactance(double transformerReactance);
+    GeneratorShortCircuit setSetUpTransformerX(double setUpTransformerX);
 
 }

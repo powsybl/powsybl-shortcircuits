@@ -18,61 +18,48 @@ import java.util.Optional;
  */
 public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> implements GeneratorShortCircuit {
 
-    private double satDirectSubtranX; // Direct-axis subtransient reactance saturated
-    private double satDirectTransX; // Saturated Direct-axis transient reactance
-    private boolean hasTransformer; // Indicates whether the generator is linked to a transformer or not
-    private double transformerReactance; // Reactance of the transformer if hasTransformer is True
+    private double directSubtransX; // X''d
+    private double directTransX; // X'd
+    private double setUpTransformerX; // Reactance of the step-up transformer
 
-    public GeneratorShortCircuitImpl(double satDirectSubtranX, double satDirectTransX, Generator gen,
-                                     boolean hasTransformer, double transformerReactance) {
-        super(gen);
-        this.satDirectSubtranX = satDirectSubtranX;
-        this.satDirectTransX = satDirectTransX;
-        this.hasTransformer = hasTransformer;
-        this.transformerReactance = transformerReactance;
+    public GeneratorShortCircuitImpl(Generator generator, double directSubtransX, double directTransX,
+                                     double setUpTransformerX) {
+        super(generator);
+        this.directSubtransX = directSubtransX;
+        this.directTransX = directTransX;
+        this.setUpTransformerX = setUpTransformerX;
     }
 
     @Override
-    public double getSatDirectSubtranX() {
-        return satDirectSubtranX;
+    public double getDirectSubtransX() {
+        return directSubtransX;
     }
 
     @Override
-    public GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX) {
-        this.satDirectSubtranX = satDirectSubtranX;
+    public GeneratorShortCircuit setDirectSubtransX(double satDirectSubtranX) {
+        this.directSubtransX = satDirectSubtranX;
         return this;
     }
 
     @Override
-    public double getSatDirectTransX() {
-        return satDirectTransX;
+    public double getDirectTransX() {
+        return directTransX;
     }
 
     @Override
-    public GeneratorShortCircuit setSatDirectTransX(double satDirectTransX) {
-        this.satDirectTransX = satDirectTransX;
+    public GeneratorShortCircuit setDirectTransX(double directTransX) {
+        this.directTransX = directTransX;
         return this;
     }
 
     @Override
-    public boolean isHasTransformer() {
-        return hasTransformer;
+    public Optional<Double> getStepUpTransformerX() {
+        return Optional.ofNullable(setUpTransformerX);
     }
 
     @Override
-    public GeneratorShortCircuit setHasTransformer(boolean hasTransformer) {
-        this.hasTransformer = hasTransformer;
-        return this;
-    }
-
-    @Override
-    public Optional<Double> getTransformerReactance() {
-        return Optional.ofNullable(transformerReactance);
-    }
-
-    @Override
-    public GeneratorShortCircuit setTransformerReactance(double transformerReactance) {
-        this.transformerReactance = transformerReactance;
+    public GeneratorShortCircuit setSetUpTransformerX(double setUpTransformerX) {
+        this.setUpTransformerX = setUpTransformerX;
         return this;
     }
 }
