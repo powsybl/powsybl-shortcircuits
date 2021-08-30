@@ -10,64 +10,26 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.iidm.network.Generator;
 
+import java.util.Optional;
+
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> implements GeneratorShortCircuit {
-    private boolean earthing; // Indicates whether or not the generator is earthed
-    private double r0; // Zero sequence resistance
-    private double r2; // Negative sequence resistance
+
     private double satDirectSubtranX; // Direct-axis subtransient reactance saturated
-    private double satDirectSyncX; // Direct-axes saturated synchronous reactance (xdsat)
     private double satDirectTransX; // Saturated Direct-axis transient reactance
-    private double x0; // Zero sequence reactance
-    private double x2; // Negative sequence reactance
+    private boolean hasTransformer; // Indicates whether the generator is linked to a transformer or not
+    private double transformerReactance; // Reactance of the transformer if hasTransformer is True
 
-    public GeneratorShortCircuitImpl(boolean earthing, double r0, double r2, double satDirectSubtranX, double satDirectSyncX,
-                                     double satDirectTransX, double x0, double x2, Generator gen) {
+    public GeneratorShortCircuitImpl(double satDirectSubtranX, double satDirectTransX, Generator gen,
+                                     boolean hasTransformer, double transformerReactance) {
         super(gen);
-        this.earthing = earthing;
-        this.r0 = r0;
-        this.r2 = r2;
         this.satDirectSubtranX = satDirectSubtranX;
-        this.satDirectSyncX = satDirectSyncX;
         this.satDirectTransX = satDirectTransX;
-        this.x0 = x0;
-        this.x2 = x2;
-    }
-
-    @Override
-    public boolean isEarthing() {
-        return earthing;
-    }
-
-    @Override
-    public GeneratorShortCircuit setEarthing(boolean earthing) {
-        this.earthing = earthing;
-        return this;
-    }
-
-    @Override
-    public double getR0() {
-        return r0;
-    }
-
-    @Override
-    public GeneratorShortCircuit setR0(double r0) {
-        this.r0 = r0;
-        return this;
-    }
-
-    @Override
-    public double getR2() {
-        return r2;
-    }
-
-    @Override
-    public GeneratorShortCircuit setR2(double r2) {
-        this.r2 = r2;
-        return this;
+        this.hasTransformer = hasTransformer;
+        this.transformerReactance = transformerReactance;
     }
 
     @Override
@@ -78,17 +40,6 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     @Override
     public GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX) {
         this.satDirectSubtranX = satDirectSubtranX;
-        return this;
-    }
-
-    @Override
-    public double getSatDirectSyncX() {
-        return satDirectSyncX;
-    }
-
-    @Override
-    public GeneratorShortCircuit setGetSatDirectSyncX(double satDirectSyncX) {
-        this.satDirectSyncX = satDirectSyncX;
         return this;
     }
 
@@ -104,25 +55,24 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public double getX0() {
-        return x0;
+    public boolean isHasTransformer() {
+        return hasTransformer;
     }
 
     @Override
-    public GeneratorShortCircuit setX0(double x0) {
-        this.x0 = x0;
+    public GeneratorShortCircuit setHasTransformer(boolean hasTransformer) {
+        this.hasTransformer = hasTransformer;
         return this;
     }
 
     @Override
-    public double getX2() {
-        return x2;
+    public Optional<Double> getTransformerReactance() {
+        return Optional.ofNullable(transformerReactance);
     }
 
     @Override
-    public GeneratorShortCircuit setX2(double x2) {
-        this.x2 = x2;
+    public GeneratorShortCircuit setTransformerReactance(double transformerReactance) {
+        this.transformerReactance = transformerReactance;
         return this;
     }
-
 }

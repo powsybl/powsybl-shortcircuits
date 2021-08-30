@@ -9,6 +9,8 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.commons.extensions.Extension;
 import com.powsybl.iidm.network.Generator;
 
+import java.util.Optional;
+
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
@@ -18,36 +20,6 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     default String getName() {
         return "generatorShortCircuit";
     }
-
-    /**
-     * Get earthing status of the generator
-     */
-    boolean isEarthing();
-
-    /**
-     * Set the
-     */
-    GeneratorShortCircuit setEarthing(boolean earthing);
-
-    /**
-     * Get the zero sequence resistance of the synchronous machine
-     */
-    double getR0();
-
-    /**
-     * Set the zero sequence resistance of the synchronous machine
-     */
-    GeneratorShortCircuit setR0(double r0);
-
-    /**
-     * Get the negative sequence resistance of the synchronous machine
-     */
-    double getR2();
-
-    /**
-     * Set the negative sequence resistance of the synchronous machine
-     */
-    GeneratorShortCircuit setR2(double r2);
 
     /**
      * Get the direct-axis subtransient reactance saturated (also known as Xd''sat)
@@ -60,16 +32,6 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     GeneratorShortCircuit setSatDirectSubtranX(double satDirectSubtranX);
 
     /**
-     * Get the direct-axis saturated synchronous reactance (also known as Xdsat)
-     */
-    double getSatDirectSyncX();
-
-    /**
-     * Set the direct-axis saturated synchronous reactance (also known as Xdsat)
-     */
-    GeneratorShortCircuit setGetSatDirectSyncX(double getSatDirectSyncX);
-
-    /**
      * Get the saturated direct-axis transient reactance
      */
     double getSatDirectTransX();
@@ -80,23 +42,23 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     GeneratorShortCircuit setSatDirectTransX(double satDirectTransX);
 
     /**
-     * Get the zero sequence reactance of the synchronous machine
+     * Indicates whether the generator is linked to a transformer
      */
-    double getX0();
+    boolean isHasTransformer();
 
     /**
-     * Set the zero sequence reactance of the synchronous machine
+     * Set whether the generator is linked to a transformer or not
      */
-    GeneratorShortCircuit setX0(double x0);
+    GeneratorShortCircuit setHasTransformer(boolean hasTransformer);
 
     /**
-     * Get the negative sequence reactance of the synchronous machine
+     * Get the reactance of the transformer if hasTransformer is True
      */
-    double getX2();
+    Optional<Double> getTransformerReactance();
 
     /**
-     * Get the negative sequence reactance of the synchronous machine
+     * Set the reactance of the transformer if hasTransformer is True
      */
-    GeneratorShortCircuit setX2(double x2);
+    GeneratorShortCircuit setTransformerReactance(double transformerReactance);
 
 }
