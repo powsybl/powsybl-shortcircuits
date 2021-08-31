@@ -22,12 +22,6 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     private double directTransX; // X'd
     private Double setUpTransformerX; // Reactance of the step-up transformer
 
-    public GeneratorShortCircuitImpl(Generator generator, double directSubtransX, double directTransX) {
-        super(generator);
-        this.directSubtransX = directSubtransX;
-        this.directTransX = directTransX;
-    }
-
     public GeneratorShortCircuitImpl(Generator generator, double directSubtransX, double directTransX,
                                      Double setUpTransformerX) {
         super(generator);
@@ -64,7 +58,7 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public GeneratorShortCircuit setSetUpTransformerX(double setUpTransformerX) {
+    public GeneratorShortCircuit setStepUpTransformerX(double setUpTransformerX) {
         this.setUpTransformerX = setUpTransformerX;
         return this;
     }

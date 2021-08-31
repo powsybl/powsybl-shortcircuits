@@ -49,6 +49,6 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     /**
      * Set the step-up transformer reactance
      */
-    GeneratorShortCircuit setSetUpTransformerX(double setUpTransformerX);
+    GeneratorShortCircuit setStepUpTransformerX(double setUpTransformerX);
 
 }

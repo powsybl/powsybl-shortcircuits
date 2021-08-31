@@ -29,13 +29,13 @@ public class GeneratorShortCircuitTest {
                 .withDirectSubtransX(20)
                 .add();
         GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
-        assertEquals(generatorShortCircuit.getDirectTransX(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
         assertEquals(generatorShortCircuit.getDirectSubtransX(), 20, 0);
         Assert.assertFalse(generatorShortCircuit.getStepUpTransformerX().isPresent());
         generatorShortCircuit.setDirectTransX(10);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setDirectSubtransX(30);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 30, 0);
+        assertEquals(30, generatorShortCircuit.getDirectSubtransX(), 0);
     }
 
     @Test
@@ -46,16 +46,18 @@ public class GeneratorShortCircuitTest {
         gen.newExtension(GeneratorShortCircuitAdder.class)
                 .withDirectTransX(20)
                 .withDirectSubtransX(20)
-                .withSetUpTransformerX(20)
+                .withStepUpTransformerX(20)
                 .add();
         GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
-        assertEquals(generatorShortCircuit.getDirectTransX(), 20, 0);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
+        assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         Assert.assertTrue(generatorShortCircuit.getStepUpTransformerX().isPresent());
-        assertEquals(generatorShortCircuit.getStepUpTransformerX().getAsDouble(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getStepUpTransformerX().getAsDouble(), 0);
         generatorShortCircuit.setDirectTransX(10);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setDirectSubtransX(30);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 30, 0);
+        assertEquals(30, generatorShortCircuit.getDirectSubtransX(), 0);
+        generatorShortCircuit.setStepUpTransformerX(10);
+        assertEquals(10, generatorShortCircuit.getStepUpTransformerX().getAsDouble(), 0);
     }
 }

@@ -24,5 +24,5 @@ public interface GeneratorShortCircuitAdder extends ExtensionAdder<Generator, Ge
 
     GeneratorShortCircuitAdder withDirectSubtransX(double direcSubtransX);
 
-    GeneratorShortCircuitAdder withSetUpTransformerX(double setUpTransformerX);
+    GeneratorShortCircuitAdder withStepUpTransformerX(double stepUpTransformerX);
 }

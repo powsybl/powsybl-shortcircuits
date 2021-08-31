@@ -16,9 +16,9 @@ import com.powsybl.iidm.network.Generator;
 public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Generator, GeneratorShortCircuit>
         implements GeneratorShortCircuitAdder {
 
-    double directTransX = Double.NaN;
-    double directSubtransX = Double.NaN;
-    Double setUpTransformerX = null;
+    double directTransX = 0;
+    double directSubtransX = 0;
+    Double stepUpTransformerX = null;
 
     protected GeneratorShortCircuitAdderImpl(Generator extendable) {
         super(extendable);
@@ -26,7 +26,7 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
 
     @Override
     protected GeneratorShortCircuit createExtension(Generator extendable) {
-        return new GeneratorShortCircuitImpl(extendable, directTransX, directSubtransX, setUpTransformerX);
+        return new GeneratorShortCircuitImpl(extendable, directTransX, directSubtransX, stepUpTransformerX);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
     }
 
     @Override
-    public GeneratorShortCircuitAdder withSetUpTransformerX(double setUpTransformerX) {
-        this.setUpTransformerX = setUpTransformerX;
+    public GeneratorShortCircuitAdder withStepUpTransformerX(double stepUpTransformerX) {
+        this.stepUpTransformerX = stepUpTransformerX;
         return this;
     }
 }
