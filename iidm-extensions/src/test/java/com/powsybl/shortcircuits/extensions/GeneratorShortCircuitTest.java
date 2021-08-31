@@ -30,7 +30,7 @@ public class GeneratorShortCircuitTest {
                 .add();
         GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
         assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), 20, 0);
+        assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         Assert.assertFalse(generatorShortCircuit.getStepUpTransformerX().isPresent());
         generatorShortCircuit.setDirectTransX(10);
         assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
