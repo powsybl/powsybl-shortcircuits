@@ -49,7 +49,7 @@
 
     <modules>
         <module>shortcircuits-api</module>
-        <module>iidm-extensions</module>
+        <module>shortcircuits-extensions</module>
     </modules>
 
     <properties>
