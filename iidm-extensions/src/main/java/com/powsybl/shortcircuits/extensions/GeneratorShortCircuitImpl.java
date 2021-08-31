@@ -7,6 +7,7 @@
 
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.iidm.network.Generator;
 
@@ -34,8 +35,11 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public GeneratorShortCircuit setDirectSubtransX(double satDirectSubtranX) {
-        this.directSubtransX = satDirectSubtranX;
+    public GeneratorShortCircuit setDirectSubtransX(double directSubtransX) {
+        if (Double.isNaN(directSubtransX)) {
+            throw new PowsyblException("Undefined directSubtranX");
+        }
+        this.directSubtransX = directSubtransX;
         return this;
     }
 
@@ -46,6 +50,9 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
 
     @Override
     public GeneratorShortCircuit setDirectTransX(double directTransX) {
+        if (Double.isNaN(directTransX)) {
+            throw new PowsyblException("Undefined directTransX");
+        }
         this.directTransX = directTransX;
         return this;
     }

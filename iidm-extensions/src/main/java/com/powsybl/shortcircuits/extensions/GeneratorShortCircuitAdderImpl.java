@@ -6,6 +6,7 @@
  */
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.commons.extensions.AbstractExtensionAdder;
 import com.powsybl.iidm.network.Generator;
 
@@ -31,13 +32,19 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
 
     @Override
     public GeneratorShortCircuitAdder withDirectTransX(double directTransX) {
+        if (Double.isNaN(directTransX)) {
+            throw new PowsyblException("Undefined directTransX");
+        }
         this.directTransX = directTransX;
         return this;
     }
 
     @Override
-    public GeneratorShortCircuitAdder withDirectSubtransX(double direcSubtransX) {
-        this.directSubtransX = direcSubtransX;
+    public GeneratorShortCircuitAdder withDirectSubtransX(double directSubtransX) {
+        if (Double.isNaN(directSubtransX)) {
+            throw new PowsyblException("Undefined directSubtransX");
+        }
+        this.directSubtransX = directSubtransX;
         return this;
     }
 
