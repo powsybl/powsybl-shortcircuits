@@ -15,8 +15,8 @@ import com.powsybl.iidm.network.VoltageLevel;
 public class VoltageLevelShortCircuitAdderImpl extends AbstractExtensionAdder<VoltageLevel, VoltageLevelShortCircuit>
         implements VoltageLevelShortCircuitAdder {
 
-    double ipMin=-1;
-    double ipMax=-1;
+    double ipMin=0;
+    double ipMax=0;
 
     protected VoltageLevelShortCircuitAdderImpl(VoltageLevel extendable){
         super(extendable);
