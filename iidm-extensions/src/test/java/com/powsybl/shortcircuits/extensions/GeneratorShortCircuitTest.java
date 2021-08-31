@@ -9,7 +9,6 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -31,7 +30,7 @@ public class GeneratorShortCircuitTest {
         GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
         assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
         assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
-        Assert.assertFalse(generatorShortCircuit.getStepUpTransformerX().isPresent());
+        assertEquals(Double.NaN, generatorShortCircuit.getStepUpTransformerX(), 0);
         generatorShortCircuit.setDirectTransX(10);
         assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setDirectSubtransX(30);
@@ -51,13 +50,12 @@ public class GeneratorShortCircuitTest {
         GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
         assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
         assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
-        Assert.assertTrue(generatorShortCircuit.getStepUpTransformerX().isPresent());
-        assertEquals(20, generatorShortCircuit.getStepUpTransformerX().getAsDouble(), 0);
+        assertEquals(20, generatorShortCircuit.getStepUpTransformerX(), 0);
         generatorShortCircuit.setDirectTransX(10);
         assertEquals(20, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setDirectSubtransX(30);
         assertEquals(30, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setStepUpTransformerX(10);
-        assertEquals(10, generatorShortCircuit.getStepUpTransformerX().getAsDouble(), 0);
+        assertEquals(10, generatorShortCircuit.getStepUpTransformerX(), 0);
     }
 }

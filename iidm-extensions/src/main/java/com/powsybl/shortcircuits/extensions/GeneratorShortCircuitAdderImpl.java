@@ -18,7 +18,7 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
 
     double directTransX = 0;
     double directSubtransX = 0;
-    Double stepUpTransformerX = null;
+    double stepUpTransformerX = Double.NaN;
 
     protected GeneratorShortCircuitAdderImpl(Generator extendable) {
         super(extendable);
