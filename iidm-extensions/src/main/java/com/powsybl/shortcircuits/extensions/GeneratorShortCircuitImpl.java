@@ -10,7 +10,7 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.iidm.network.Generator;
 
-import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  *
@@ -20,10 +20,16 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
 
     private double directSubtransX; // X''d
     private double directTransX; // X'd
-    private double setUpTransformerX; // Reactance of the step-up transformer
+    private Double setUpTransformerX; // Reactance of the step-up transformer
+
+    public GeneratorShortCircuitImpl(Generator generator, double directSubtransX, double directTransX) {
+        super(generator);
+        this.directSubtransX = directSubtransX;
+        this.directTransX = directTransX;
+    }
 
     public GeneratorShortCircuitImpl(Generator generator, double directSubtransX, double directTransX,
-                                     double setUpTransformerX) {
+                                     Double setUpTransformerX) {
         super(generator);
         this.directSubtransX = directSubtransX;
         this.directTransX = directTransX;
@@ -53,8 +59,8 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
     }
 
     @Override
-    public Optional<Double> getStepUpTransformerX() {
-        return Optional.ofNullable(setUpTransformerX);
+    public OptionalDouble getStepUpTransformerX() {
+        return setUpTransformerX != null ? OptionalDouble.of(setUpTransformerX) : OptionalDouble.empty();
     }
 
     @Override

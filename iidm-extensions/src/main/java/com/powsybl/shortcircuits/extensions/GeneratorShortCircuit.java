@@ -9,7 +9,7 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.commons.extensions.Extension;
 import com.powsybl.iidm.network.Generator;
 
-import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
  *
@@ -44,7 +44,7 @@ public interface GeneratorShortCircuit extends Extension<Generator> {
     /**
      * Get the step-up transformer reactance if the generator has a non-modeled step-up transformer.
      */
-    Optional<Double> getStepUpTransformerX();
+    OptionalDouble getStepUpTransformerX();
 
     /**
      * Set the step-up transformer reactance

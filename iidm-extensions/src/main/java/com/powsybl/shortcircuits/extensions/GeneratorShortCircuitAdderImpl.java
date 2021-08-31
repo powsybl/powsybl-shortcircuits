@@ -16,9 +16,9 @@ import com.powsybl.iidm.network.Generator;
 public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Generator, GeneratorShortCircuit>
         implements GeneratorShortCircuitAdder {
 
-    double directTransX = -1;
-    double directSubtransX = -1;
-    double setUpTransformerX = Double.parseDouble(null);
+    double directTransX = Double.NaN;
+    double directSubtransX = Double.NaN;
+    Double setUpTransformerX = null;
 
     protected GeneratorShortCircuitAdderImpl(Generator extendable) {
         super(extendable);
