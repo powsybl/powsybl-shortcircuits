@@ -35,13 +35,13 @@
             <name>Bertrand RIX</name>
             <email>bertrand.rix@artelys.com</email>
             <organization>Artelys</organization>
-            <organizationUrl>http://www.rte-france.com</organizationUrl>
+            <organizationUrl>http://www.artelys.com</organizationUrl>
         </developer>
         <developer>
             <name>Coline PILOQUET</name>
             <email>coline.piloquet@rte-france.com</email>
             <organization>RTE</organization>
-            <organizationUrl>http://www.artelys.com</organizationUrl>
+          <organizationUrl>http://www.rte-france.com</organizationUrl>
         </developer>
     </developers>
 
@@ -95,5 +95,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
