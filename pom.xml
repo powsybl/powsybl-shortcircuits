@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
     Copyright (c) 2021, RTE (http://www.rte-france.com)
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -39,12 +37,19 @@
             <organization>Artelys</organization>
             <organizationUrl>http://www.artelys.com</organizationUrl>
         </developer>
+        <developer>
+            <name>Coline PILOQUET</name>
+            <email>coline.piloquet@rte-france.com</email>
+            <organization>RTE</organization>
+          <organizationUrl>http://www.rte-france.com</organizationUrl>
+        </developer>
     </developers>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>shortcircuits-api</module>
+        <module>shortcircuits-extensions</module>
     </modules>
 
     <properties>
@@ -90,6 +95,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
-
