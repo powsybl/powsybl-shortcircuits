@@ -16,16 +16,16 @@ import com.powsybl.iidm.network.VoltageLevel;
 public interface VoltageLevelShortCircuit extends Extension<VoltageLevel> {
     @Override
     default String getName() {
-        return "voltageLevelShortCircuits";
+        return "voltageLevelShortCircuit";
     }
 
     /**
-     * Get minimum allowable peak short-circuit current
+     * Get minimum allowable peak short-circuit current [A]
      */
     double getIpMin();
 
     /**
-     * Set minimum allowable peak short-circuit current
+     * Set minimum allowable peak short-circuit current [A]
      */
     VoltageLevelShortCircuit setIpMin (double ipMin);
 
