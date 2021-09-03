@@ -1,3 +1,4 @@
+
 /**
  * Copyright (c) 2021, RTE (http://www.rte-france.com)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,34 +8,35 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.powsybl.commons.extensions.AbstractExtensionAdder;
-import com.powsybl.iidm.network.VoltageLevel;
+import com.powsybl.iidm.network.Identifiable;
 
 /**
+ *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
-public class VoltageLevelShortCircuitAdderImpl extends AbstractExtensionAdder<VoltageLevel, VoltageLevelShortCircuit>
-        implements VoltageLevelShortCircuitAdder {
+public class IdentifiableShortCircuitAdderImpl<I extends Identifiable<I>> extends AbstractExtensionAdder<I, IdentifiableShortCircuit<I>>
+        implements IdentifiableShortCircuitAdder<I>  {
 
     double ipMin = Double.NaN;
     double ipMax = Double.NaN;
 
-    protected VoltageLevelShortCircuitAdderImpl(VoltageLevel extendable){
+    protected IdentifiableShortCircuitAdderImpl(I extendable) {
         super(extendable);
     }
 
     @Override
-    protected VoltageLevelShortCircuit createExtension(VoltageLevel extendable){
-        return new VoltageLevelShortCircuitImpl(extendable, ipMin, ipMax);
+    protected IdentifiableShortCircuitImpl<I> createExtension(I extendable) {
+        return new IdentifiableShortCircuitImpl<I>(extendable, ipMin, ipMax);
     }
 
     @Override
-    public VoltageLevelShortCircuitAdder withIpMin(double ipMin){
+    public IdentifiableShortCircuitAdder withIpMin(double ipMin) {
         this.ipMin = ipMin;
         return this;
     }
 
     @Override
-    public VoltageLevelShortCircuitAdder withIpMax(double ipMax){
+    public IdentifiableShortCircuitAdder withIpMax(double ipMax) {
         this.ipMax = ipMax;
         return this;
     }

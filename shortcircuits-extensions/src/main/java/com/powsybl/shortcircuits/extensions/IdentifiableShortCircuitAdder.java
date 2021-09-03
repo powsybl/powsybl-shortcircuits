@@ -7,20 +7,20 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.powsybl.commons.extensions.ExtensionAdder;
-import com.powsybl.iidm.network.VoltageLevel;
+import com.powsybl.iidm.network.Identifiable;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
-public interface VoltageLevelShortCircuitAdder extends ExtensionAdder<VoltageLevel, VoltageLevelShortCircuit> {
+public interface IdentifiableShortCircuitAdder<I extends Identifiable<I>> extends ExtensionAdder<I, IdentifiableShortCircuit<I>> {
 
     @Override
-    default Class<VoltageLevelShortCircuit> getExtensionClass() {
-        return VoltageLevelShortCircuit.class;
+    default Class<IdentifiableShortCircuit> getExtensionClass() {
+        return IdentifiableShortCircuit.class;
     }
 
-    VoltageLevelShortCircuitAdder withIpMin(double IpMin);
+    IdentifiableShortCircuitAdder<I> withIpMin(double ipMin);
 
-    VoltageLevelShortCircuitAdder withIpMax(double IpMax);
+    IdentifiableShortCircuitAdder<I> withIpMax(double ipMax);
 
 }

@@ -8,16 +8,16 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.powsybl.commons.extensions.AbstractExtension;
-import com.powsybl.iidm.network.VoltageLevel;
+import com.powsybl.iidm.network.Identifiable;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
-public class VoltageLevelShortCircuitImpl extends AbstractExtension<VoltageLevel> implements VoltageLevelShortCircuit {
+public class IdentifiableShortCircuitImpl<I extends Identifiable<I>> extends AbstractExtension<I> implements IdentifiableShortCircuit<I> {
     private double ipMin; // Minimum allowable peak short-circuit current
     private double ipMax; // Maximum allowable peak short-circuit current
 
-    public VoltageLevelShortCircuitImpl(VoltageLevel extendable, double ipMin, double ipMax) {
+    public IdentifiableShortCircuitImpl(I extendable, double ipMin, double ipMax) {
         super(extendable);
         this.ipMin = ipMin;
         this.ipMax = ipMax;
@@ -29,7 +29,7 @@ public class VoltageLevelShortCircuitImpl extends AbstractExtension<VoltageLevel
     }
 
     @Override
-    public VoltageLevelShortCircuit setIpMin(double ipMin) {
+    public IdentifiableShortCircuit<I> setIpMin(double ipMin) {
         this.ipMin = ipMin;
         return this;
     }
@@ -40,8 +40,9 @@ public class VoltageLevelShortCircuitImpl extends AbstractExtension<VoltageLevel
     }
 
     @Override
-    public VoltageLevelShortCircuit setIpMax(double ipMax) {
+    public IdentifiableShortCircuit<I> setIpMax(double ipMax) {
         this.ipMax = ipMax;
         return this;
     }
+
 }

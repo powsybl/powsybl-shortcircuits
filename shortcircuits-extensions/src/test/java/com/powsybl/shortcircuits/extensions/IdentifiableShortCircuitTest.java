@@ -17,22 +17,22 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
-public class VoltageLevelShortCircuitTest {
+public class IdentifiableShortCircuitTest {
     @Test
     public void test() {
         Network network = EurostagTutorialExample1Factory.create();
         VoltageLevel voltageLevel = network.getVoltageLevel("VLLOAD");
         assertNotNull(voltageLevel);
-        voltageLevel.newExtension(VoltageLevelShortCircuitAdder.class)
+        voltageLevel.newExtension(IdentifiableShortCircuitAdder.class)
                 .withIpMin(2000)
                 .withIpMax(1000)
                 .add();
-        VoltageLevelShortCircuit voltageLevelShortCircuit = voltageLevel.getExtension(VoltageLevelShortCircuit.class);
-        assertEquals(1000, voltageLevelShortCircuit.getIpMin(), 0);
-        assertEquals(2000, voltageLevelShortCircuit.getIpMax(), 0);
-        voltageLevelShortCircuit.setIpMax(1500);
-        voltageLevelShortCircuit.setIpMin(900);
-        assertEquals(900, voltageLevelShortCircuit.getIpMin(), 0);
-        assertEquals(1500, voltageLevelShortCircuit.getIpMax(), 0);
+        IdentifiableShortCircuit identifiableShortCircuit = voltageLevel.getExtension(IdentifiableShortCircuit.class);
+        assertEquals(2000, identifiableShortCircuit.getIpMin(), 0);
+        assertEquals(1000, identifiableShortCircuit.getIpMax(), 0);
+        identifiableShortCircuit.setIpMax(1500);
+        identifiableShortCircuit.setIpMin(900);
+        assertEquals(900, identifiableShortCircuit.getIpMin(), 0);
+        assertEquals(1500, identifiableShortCircuit.getIpMax(), 0);
     }
 }

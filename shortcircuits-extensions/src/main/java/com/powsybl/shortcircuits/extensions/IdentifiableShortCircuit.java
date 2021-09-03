@@ -8,15 +8,15 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.powsybl.commons.extensions.Extension;
-import com.powsybl.iidm.network.VoltageLevel;
+import com.powsybl.iidm.network.Identifiable;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
-public interface VoltageLevelShortCircuit extends Extension<VoltageLevel> {
+public interface IdentifiableShortCircuit<I extends Identifiable<I>> extends Extension<I> {
     @Override
     default String getName() {
-        return "voltageLevelShortCircuit";
+        return "identifiableShortCircuit";
     }
 
     /**
@@ -27,7 +27,7 @@ public interface VoltageLevelShortCircuit extends Extension<VoltageLevel> {
     /**
      * Set minimum allowable peak short-circuit current [A]
      */
-    VoltageLevelShortCircuit setIpMin (double ipMin);
+    IdentifiableShortCircuit<I> setIpMin(double ipMin);
 
     /**
      * Get maximum allowable peak short-circuit current
@@ -37,5 +37,5 @@ public interface VoltageLevelShortCircuit extends Extension<VoltageLevel> {
     /**
      * Set maximum allowable peak short-circuit current
      */
-    VoltageLevelShortCircuit setIpMax(double ipMax);
+    IdentifiableShortCircuit<I> setIpMax(double ipMax);
 }

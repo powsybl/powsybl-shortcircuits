@@ -8,14 +8,15 @@ package com.powsybl.shortcircuits.extensions;
 
 import com.google.auto.service.AutoService;
 import com.powsybl.commons.extensions.ExtensionAdderProvider;
-import com.powsybl.iidm.network.VoltageLevel;
+import com.powsybl.iidm.network.Identifiable;
+
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 @AutoService(ExtensionAdderProvider.class)
-public class VoltageLevelShortCircuitAdderImplProvider
-        implements ExtensionAdderProvider<VoltageLevel, VoltageLevelShortCircuit, VoltageLevelShortCircuitAdder>{
+public class IdentifiableShortCircuitAdderImplProvider<I extends Identifiable<I>>
+    implements ExtensionAdderProvider<I, IdentifiableShortCircuit<I>, IdentifiableShortCircuitAdderImpl<I>> {
 
     @Override
     public String getImplementationName() {
@@ -23,12 +24,12 @@ public class VoltageLevelShortCircuitAdderImplProvider
     }
 
     @Override
-    public Class<VoltageLevelShortCircuitAdder> getAdderClass() {
-        return VoltageLevelShortCircuitAdder.class;
+    public Class<? super IdentifiableShortCircuitAdderImpl> getAdderClass() {
+        return IdentifiableShortCircuitAdderImpl.class;
     }
 
     @Override
-    public VoltageLevelShortCircuitAdder newAdder(VoltageLevel extendable) {
-        return new VoltageLevelShortCircuitAdderImpl (extendable);
+    public IdentifiableShortCircuitAdderImpl<I> newAdder(I extendable) {
+        return new IdentifiableShortCircuitAdderImpl<>(extendable);
     }
 }
