@@ -26,7 +26,7 @@ public class IdentifiableShortCircuitAdderImpl<I extends Identifiable<I>> extend
 
     @Override
     protected IdentifiableShortCircuitImpl<I> createExtension(I extendable) {
-        return new IdentifiableShortCircuitImpl<I>(extendable, ipMin, ipMax);
+        return new IdentifiableShortCircuitImpl<>(extendable, ipMin, ipMax);
     }
 
     @Override
