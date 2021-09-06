@@ -7,6 +7,7 @@
  */
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.commons.extensions.AbstractExtensionAdder;
 import com.powsybl.iidm.network.Identifiable;
 
@@ -39,5 +40,13 @@ public class IdentifiableShortCircuitAdderImpl<I extends Identifiable<I>> extend
     public IdentifiableShortCircuitAdder withIpMax(double ipMax) {
         this.ipMax = ipMax;
         return this;
+    }
+
+    @Override
+    public I add() {
+        if (Double.isNaN(ipMax) || Double.isNaN(ipMin)) {
+            throw new PowsyblException("Undefined ipMax or ipMin");
+        }
+        return super.add();
     }
 }

@@ -7,6 +7,7 @@
 
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.iidm.network.Identifiable;
 
@@ -30,6 +31,9 @@ public class IdentifiableShortCircuitImpl<I extends Identifiable<I>> extends Abs
 
     @Override
     public IdentifiableShortCircuit<I> setIpMin(double ipMin) {
+        if (Double.isNaN(ipMin)) {
+            throw new PowsyblException("Undefined ipMin");
+        }
         this.ipMin = ipMin;
         return this;
     }
@@ -41,6 +45,9 @@ public class IdentifiableShortCircuitImpl<I extends Identifiable<I>> extends Abs
 
     @Override
     public IdentifiableShortCircuit<I> setIpMax(double ipMax) {
+        if (Double.isNaN(ipMax)) {
+            throw new PowsyblException("Undefined ipMax");
+        }
         this.ipMax = ipMax;
         return this;
     }
