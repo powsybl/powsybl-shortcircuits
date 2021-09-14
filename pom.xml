@@ -20,8 +20,8 @@
     <artifactId>powsybl-shortcircuits</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
-    <name>powsybl schortcircuits</name>
-    <description>An open source schortcircuits module based on PowSyBl</description>
+    <name>powsybl shortcircuits</name>
+    <description>An open source shortcircuits module based on PowSyBl</description>
     <url>http://www.powsybl.org</url>
 
     <scm>

@@ -7,7 +7,6 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.powsybl.commons.AbstractConverterTest;
-import com.powsybl.iidm.network.Identifiable;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.VoltageLevel;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
