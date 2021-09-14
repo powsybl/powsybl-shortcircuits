@@ -7,7 +7,7 @@
         <xs:complexType>
             <xs:attribute name="directSubtransX" use="required" type="xs:double"/>
             <xs:attribute name="directTransX" use="required" type="xs:double"/>
-            <xs:attribute name="stepUpTransformer" use="required" type="xs:double"/>
+            <xs:attribute name="stepUpTransformerX" use="required" type="xs:double"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

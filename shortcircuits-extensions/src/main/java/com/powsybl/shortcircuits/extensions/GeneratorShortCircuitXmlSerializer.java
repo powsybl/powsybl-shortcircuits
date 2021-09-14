@@ -54,11 +54,11 @@ public class GeneratorShortCircuitXmlSerializer implements ExtensionXmlSerialize
     public GeneratorShortCircuit read(Generator generator, XmlReaderContext context) throws XMLStreamException {
         double directSubtransX = XmlUtil.readDoubleAttribute(context.getReader(), "directSubtransX");
         double directTransX = XmlUtil.readDoubleAttribute(context.getReader(), "directTransX");
-        double stepUpTransformer = XmlUtil.readDoubleAttribute(context.getReader(), "stepUpTransformer");
+        double stepUpTransformerX = XmlUtil.readDoubleAttribute(context.getReader(), "stepUpTransformerX");
         generator.newExtension(GeneratorShortCircuitAdder.class)
                 .withDirectSubtransX(directSubtransX)
                 .withDirectTransX(directTransX)
-                .withStepUpTransformerX(stepUpTransformer)
+                .withStepUpTransformerX(stepUpTransformerX)
                 .add();
         return generator.getExtension(GeneratorShortCircuit.class);
     }
