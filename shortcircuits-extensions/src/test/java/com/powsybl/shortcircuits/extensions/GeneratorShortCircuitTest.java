@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
-public class GeneratorShortCircuitTest  {
+public class GeneratorShortCircuitTest {
     @Test
     public void testWithoutTransformer() {
         Network network = EurostagTutorialExample1Factory.create();

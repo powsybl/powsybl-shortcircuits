@@ -25,7 +25,7 @@ public class IdentifiableShortCircuitXmlSerializer<I extends Identifiable<I>> ex
 
     public IdentifiableShortCircuitXmlSerializer() {
         super("identifiableShortCircuit", "network", IdentifiableShortCircuit.class, false,
-                "identifiableShortCircuit.xsd", "http://www.itesla_project.eu/schema/iidm/ext/identifiable_short_circuit/1_0",
+                "identifiableShortCircuit.xsd", "http://www.powsybl.org/schema/iidm/ext/identifiable_short_circuit/1_0",
                 "isc");
     }
 

@@ -25,7 +25,7 @@ public class GeneratorShortCircuitXmlSerializer extends AbstractExtensionXmlSeri
 
     public GeneratorShortCircuitXmlSerializer() {
         super("generatorShortCircuit", "network", GeneratorShortCircuit.class, false,
-                "generatorShortCircuit.xsd", "http://www.itesla_project.eu/schema/iidm/ext/generator_short_circuit/1_0",
+                "generatorShortCircuit.xsd", "http://www.powsybl.org/schema/iidm/ext/generator_short_circuit/1_0",
                 "gsc");
     }
 
@@ -40,7 +40,7 @@ public class GeneratorShortCircuitXmlSerializer extends AbstractExtensionXmlSeri
     public GeneratorShortCircuit read(Generator generator, XmlReaderContext context) throws XMLStreamException {
         double directSubtransX = XmlUtil.readDoubleAttribute(context.getReader(), "directSubtransX");
         double directTransX = XmlUtil.readDoubleAttribute(context.getReader(), "directTransX");
-        double stepUpTransformerX = XmlUtil.readDoubleAttribute(context.getReader(), "stepUpTransformerX");
+        double stepUpTransformerX = XmlUtil.readOptionalDoubleAttribute(context.getReader(), "stepUpTransformerX");
         generator.newExtension(GeneratorShortCircuitAdder.class)
                 .withDirectSubtransX(directSubtransX)
                 .withDirectTransX(directTransX)
