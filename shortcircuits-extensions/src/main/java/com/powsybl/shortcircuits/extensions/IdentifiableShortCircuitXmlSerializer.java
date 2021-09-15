@@ -7,6 +7,7 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.google.auto.service.AutoService;
+import com.powsybl.commons.extensions.AbstractExtensionXmlSerializer;
 import com.powsybl.commons.extensions.ExtensionXmlSerializer;
 import com.powsybl.commons.xml.XmlReaderContext;
 import com.powsybl.commons.xml.XmlUtil;
@@ -14,32 +15,18 @@ import com.powsybl.commons.xml.XmlWriterContext;
 import com.powsybl.iidm.network.Identifiable;
 
 import javax.xml.stream.XMLStreamException;
-import java.io.InputStream;
 
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 @AutoService(ExtensionXmlSerializer.class)
-public class IdentifiableShortCircuitXmlSerializer<I extends Identifiable<I>> implements ExtensionXmlSerializer<I, IdentifiableShortCircuit<I>> {
-    @Override
-    public boolean hasSubElements() {
-        return false;
-    }
+public class IdentifiableShortCircuitXmlSerializer<I extends Identifiable<I>> extends AbstractExtensionXmlSerializer<I, IdentifiableShortCircuit<I>> {
 
-    @Override
-    public InputStream getXsdAsStream() {
-        return  getClass().getResourceAsStream("/xsd/identifiableShortCircuit.xsd");
-    }
-
-    @Override
-    public String getNamespaceUri() {
-        return "http://www.itesla_project.eu/schema/iidm/ext/identifiable_short_circuit/1_0";
-    }
-
-    @Override
-    public String getNamespacePrefix() {
-        return "isc";
+    public IdentifiableShortCircuitXmlSerializer() {
+        super("identifiableShortCircuit", "network", IdentifiableShortCircuit.class, false,
+                "identifiableShortCircuit.xsd", "http://www.itesla_project.eu/schema/iidm/ext/identifiable_short_circuit/1_0",
+                "isc");
     }
 
     @Override
@@ -57,20 +44,5 @@ public class IdentifiableShortCircuitXmlSerializer<I extends Identifiable<I>> im
                 .withIpMin(ipMin)
                 .add();
         return identifiable.getExtension(IdentifiableShortCircuit.class);
-    }
-
-    @Override
-    public String getExtensionName() {
-        return "identifiableShortCircuit";
-    }
-
-    @Override
-    public String getCategoryName() {
-        return "network";
-    }
-
-    @Override
-    public Class<? super IdentifiableShortCircuit> getExtensionClass() {
-        return IdentifiableShortCircuit.class;
     }
 }

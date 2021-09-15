@@ -9,12 +9,7 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
-import com.powsybl.commons.AbstractConverterTest;
-import com.powsybl.iidm.xml.NetworkXml;
-import org.joda.time.DateTime;
 import org.junit.Test;
-
-import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -22,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
-public class GeneratorShortCircuitTest extends AbstractConverterTest {
+public class GeneratorShortCircuitTest  {
     @Test
     public void testWithoutTransformer() {
         Network network = EurostagTutorialExample1Factory.create();
@@ -62,33 +57,5 @@ public class GeneratorShortCircuitTest extends AbstractConverterTest {
         assertEquals(30, generatorShortCircuit.getDirectSubtransX(), 0);
         generatorShortCircuit.setStepUpTransformerX(10);
         assertEquals(10, generatorShortCircuit.getStepUpTransformerX(), 0);
-    }
-
-    @Test
-    public void testXmlSerializer() throws IOException {
-        Network network = EurostagTutorialExample1Factory.create();
-        network.setCaseDate(DateTime.parse("2016-12-07T11:18:52.881+01:00"));
-        Generator gen = network.getGenerator("GEN");
-        assertNotNull(gen);
-        gen.newExtension(GeneratorShortCircuitAdder.class)
-                .withDirectTransX(20)
-                .withDirectSubtransX(20)
-                .withStepUpTransformerX(20)
-                .add();
-        GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
-
-        Network network2 = roundTripXmlTest(network,
-                NetworkXml::writeAndValidate,
-                NetworkXml::read, "/generatorShortCircuitRef.xml");
-
-        Generator gen2 = network2.getGenerator("GEN");
-        assertNotNull(gen2);
-        GeneratorShortCircuit generatorShortCircuit2 = gen2.getExtension(GeneratorShortCircuit.class);
-        assertNotNull(generatorShortCircuit2);
-
-        assertEquals(generatorShortCircuit.getDirectSubtransX(), generatorShortCircuit2.getDirectSubtransX(), 0);
-        assertEquals(generatorShortCircuit.getDirectTransX(), generatorShortCircuit2.getDirectTransX(), 0);
-        assertEquals(generatorShortCircuit.getStepUpTransformerX(), generatorShortCircuit2.getStepUpTransformerX(), 0);
-
     }
 }

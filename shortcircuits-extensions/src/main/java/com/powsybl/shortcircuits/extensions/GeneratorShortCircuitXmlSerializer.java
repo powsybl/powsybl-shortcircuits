@@ -7,6 +7,7 @@
 package com.powsybl.shortcircuits.extensions;
 
 import com.google.auto.service.AutoService;
+import com.powsybl.commons.extensions.AbstractExtensionXmlSerializer;
 import com.powsybl.commons.extensions.ExtensionXmlSerializer;
 import com.powsybl.commons.xml.XmlReaderContext;
 import com.powsybl.commons.xml.XmlUtil;
@@ -14,33 +15,18 @@ import com.powsybl.commons.xml.XmlWriterContext;
 import com.powsybl.iidm.network.Generator;
 
 import javax.xml.stream.XMLStreamException;
-import java.io.InputStream;
 
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 @AutoService(ExtensionXmlSerializer.class)
-public class GeneratorShortCircuitXmlSerializer implements ExtensionXmlSerializer<Generator, GeneratorShortCircuit> {
+public class GeneratorShortCircuitXmlSerializer extends AbstractExtensionXmlSerializer<Generator, GeneratorShortCircuit> {
 
-    @Override
-    public boolean hasSubElements() {
-        return false;
-    }
-
-    @Override
-    public InputStream getXsdAsStream() {
-        return getClass().getResourceAsStream("/xsd/generatorShortCircuit.xsd");
-    }
-
-    @Override
-    public String getNamespaceUri() {
-        return "http://www.itesla_project.eu/schema/iidm/ext/generator_short_circuit/1_0";
-    }
-
-    @Override
-    public String getNamespacePrefix() {
-        return "gsc";
+    public GeneratorShortCircuitXmlSerializer() {
+        super("generatorShortCircuit", "network", GeneratorShortCircuit.class, false,
+                "generatorShortCircuit.xsd", "http://www.itesla_project.eu/schema/iidm/ext/generator_short_circuit/1_0",
+                "gsc");
     }
 
     @Override
@@ -61,20 +47,5 @@ public class GeneratorShortCircuitXmlSerializer implements ExtensionXmlSerialize
                 .withStepUpTransformerX(stepUpTransformerX)
                 .add();
         return generator.getExtension(GeneratorShortCircuit.class);
-    }
-
-    @Override
-    public String getExtensionName() {
-        return "generatorShortCircuit";
-    }
-
-    @Override
-    public String getCategoryName() {
-        return "network";
-    }
-
-    @Override
-    public Class<? super GeneratorShortCircuit> getExtensionClass() {
-        return GeneratorShortCircuit.class;
     }
 }
