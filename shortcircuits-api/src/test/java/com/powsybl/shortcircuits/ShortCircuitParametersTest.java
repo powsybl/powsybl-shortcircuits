@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 /**
  * @author Sylvain Leclerc <sylvain.leclerc at rte-france.com>
  */
-public class ShortCircuitsParametersTest {
+public class ShortCircuitParametersTest {
 
     private FileSystem fileSystem;
 
@@ -42,7 +42,7 @@ public class ShortCircuitsParametersTest {
 
     @Test
     public void testExtensions() {
-        ShortCircuitsParameters parameters = new ShortCircuitsParameters();
+        ShortCircuitParameters parameters = new ShortCircuitParameters();
         DummyExtension dummyExtension = new DummyExtension();
         parameters.addExtension(DummyExtension.class, dummyExtension);
 
@@ -54,7 +54,7 @@ public class ShortCircuitsParametersTest {
 
     @Test
     public void testNoExtensions() {
-        ShortCircuitsParameters parameters = new ShortCircuitsParameters();
+        ShortCircuitParameters parameters = new ShortCircuitParameters();
 
         assertEquals(0, parameters.getExtensions().size());
         assertFalse(parameters.getExtensions().contains(new DummyExtension()));
@@ -64,14 +64,14 @@ public class ShortCircuitsParametersTest {
 
     @Test
     public void testExtensionFromConfig() {
-        ShortCircuitsParameters parameters = ShortCircuitsParameters.load(platformConfig);
+        ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
 
         assertEquals(1, parameters.getExtensions().size());
         assertNotNull(parameters.getExtensionByName("dummyExtension"));
         assertNotNull(parameters.getExtension(DummyExtension.class));
     }
 
-    private static class DummyExtension extends AbstractExtension<ShortCircuitsParameters> {
+    private static class DummyExtension extends AbstractExtension<ShortCircuitParameters> {
 
         @Override
         public String getName() {
@@ -79,8 +79,8 @@ public class ShortCircuitsParametersTest {
         }
     }
 
-    @AutoService(ShortCircuitsParameters.ConfigLoader.class)
-    public static class DummyLoader implements ShortCircuitsParameters.ConfigLoader<DummyExtension> {
+    @AutoService(ShortCircuitParameters.ConfigLoader.class)
+    public static class DummyLoader implements ShortCircuitParameters.ConfigLoader<DummyExtension> {
 
         @Override
         public DummyExtension load(PlatformConfig platformConfig) {

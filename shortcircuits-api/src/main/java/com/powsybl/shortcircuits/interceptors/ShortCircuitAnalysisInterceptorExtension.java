@@ -9,9 +9,9 @@ package com.powsybl.shortcircuits.interceptors;
 /**
  * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
-public interface ShortCircuitsAnalysisInterceptorExtension {
+public interface ShortCircuitAnalysisInterceptorExtension {
 
     String getName();
 
-    ShortCircuitsAnalysisInterceptor createInterceptor();
+    ShortCircuitAnalysisInterceptor createInterceptor();
 }

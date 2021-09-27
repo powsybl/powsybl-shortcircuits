@@ -9,7 +9,7 @@ package com.powsybl.shortcircuits;
 import com.powsybl.commons.PowsyblException;
 import com.powsybl.computation.ComputationManager;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.interceptors.ShortCircuitsAnalysisInterceptor;
+import com.powsybl.shortcircuits.interceptors.ShortCircuitAnalysisInterceptor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,12 +21,12 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Bertrand Rix <bertrand.rix at artelys.com>
  */
-public class ShortCircuitsAnalysisTest {
+public class ShortCircuitAnalysisTest {
 
     @Test
     public void shortCircuitAnalysisWithDummyProvider() {
 
-        ShortCircuitsAnalysisProvider provider = new ShortCircuitsAnalysisProvider() {
+        ShortCircuitAnalysisProvider provider = new ShortCircuitAnalysisProvider() {
             @Override
             public String getName() {
                 return "DummyProvicer";
@@ -38,24 +38,24 @@ public class ShortCircuitsAnalysisTest {
             }
 
             @Override
-            public void addInterceptor(final ShortCircuitsAnalysisInterceptor interceptor) {
+            public void addInterceptor(final ShortCircuitAnalysisInterceptor interceptor) {
 
             }
 
             @Override
-            public boolean removeInterceptor(final ShortCircuitsAnalysisInterceptor interceptor) {
+            public boolean removeInterceptor(final ShortCircuitAnalysisInterceptor interceptor) {
                 return false;
             }
 
             @Override
-            public CompletableFuture<ShortCircuitsAnalysisResult> run(Network network, ShortCircuitsParameters parameters,
-                                                                      ComputationManager computationManager) {
+            public CompletableFuture<ShortCircuitAnalysisResult> run(Network network, ShortCircuitParameters parameters,
+                                                                     ComputationManager computationManager) {
 
-                return CompletableFuture.supplyAsync(() -> new ShortCircuitsAnalysisResult(Collections.emptyList(), Collections.emptyList()));
+                return CompletableFuture.supplyAsync(() -> new ShortCircuitAnalysisResult(Collections.emptyList(), Collections.emptyList()));
             }
         };
 
-        ShortCircuitsAnalysisResult res = provider.run(null, null, null).join();
+        ShortCircuitAnalysisResult res = provider.run(null, null, null).join();
 
         assertTrue(res.getFaultResults().size() == 0);
         assertTrue(res.getLimitViolations().size() == 0);
@@ -63,6 +63,6 @@ public class ShortCircuitsAnalysisTest {
 
     @Test
     public void shortCircuitAnalysisWithDefaultProvider() {
-        Assert.assertThrows(PowsyblException.class, () -> ShortCircuitsAnalysis.runAsync(null, null, null));
+        Assert.assertThrows(PowsyblException.class, () -> ShortCircuitAnalysis.runAsync(null, null, null));
     }
 }

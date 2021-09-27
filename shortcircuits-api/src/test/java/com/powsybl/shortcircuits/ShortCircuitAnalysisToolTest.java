@@ -16,7 +16,7 @@ import com.powsybl.tools.Tool;
 /**
  * @author Boubakeur Brahimi
  */
-public class ShortCircuitsAnalysisToolTest extends AbstractToolTest {
+public class ShortCircuitAnalysisToolTest extends AbstractToolTest {
 
     private ShortCircuitAnalysisTool shortCircuitTool;
 

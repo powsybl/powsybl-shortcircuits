@@ -15,8 +15,8 @@ import com.powsybl.commons.io.table.TableFormatterFactory;
  *
  * @author Boubakeur Brahimi
  */
-@AutoService(ShortCircuitsAnalysisResultExporter.class)
-public class CsvShortCircuitsAnalysisResultExporter extends AbstractTableShortCircuitsAnalysisResultExporter {
+@AutoService(ShortCircuitAnalysisResultExporter.class)
+public class CsvShortCircuitAnalysisResultExporter extends AbstractTableShortCircuitAnalysisResultExporter {
 
     private static final TableFormatterFactory FACTORY = new CsvTableFormatterFactory();
 

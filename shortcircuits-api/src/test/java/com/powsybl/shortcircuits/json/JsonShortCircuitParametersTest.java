@@ -17,22 +17,22 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.google.auto.service.AutoService;
 import com.powsybl.commons.AbstractConverterTest;
 import com.powsybl.commons.extensions.AbstractExtension;
-import com.powsybl.shortcircuits.ShortCircuitsParameters;
+import com.powsybl.shortcircuits.ShortCircuitParameters;
 
 /**
  * @author Boubakeur Brahimi
  */
-public class JsonShortCircuitsParametersTest extends AbstractConverterTest {
+public class JsonShortCircuitParametersTest extends AbstractConverterTest {
 
     @Test
     public void roundTrip() throws IOException {
-        ShortCircuitsParameters parameters = new ShortCircuitsParameters();
+        ShortCircuitParameters parameters = new ShortCircuitParameters();
         parameters.addExtension(DummyExtension.class, new DummyExtension());
-        roundTripTest(parameters, JsonShortCircuitsParameters::write, JsonShortCircuitsParameters::read,
-                "/ShortCircuitsParameters.json");
+        roundTripTest(parameters, JsonShortCircuitParameters::write, JsonShortCircuitParameters::read,
+                "/ShortCircuitParameters.json");
     }
 
-    private static class DummyExtension extends AbstractExtension<ShortCircuitsParameters> {
+    private static class DummyExtension extends AbstractExtension<ShortCircuitParameters> {
 
         @Override
         public String getName() {
@@ -40,8 +40,8 @@ public class JsonShortCircuitsParametersTest extends AbstractConverterTest {
         }
     }
 
-    @AutoService(JsonShortCircuitsParameters.ExtensionSerializer.class)
-    public static class DummySerializer implements JsonShortCircuitsParameters.ExtensionSerializer<DummyExtension> {
+    @AutoService(JsonShortCircuitParameters.ExtensionSerializer.class)
+    public static class DummySerializer implements JsonShortCircuitParameters.ExtensionSerializer<DummyExtension> {
 
         @Override
         public void serialize(DummyExtension extension, JsonGenerator jsonGenerator,

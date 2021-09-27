@@ -24,7 +24,7 @@ import com.powsybl.tools.Command;
 import com.powsybl.tools.Tool;
 import com.powsybl.tools.ToolRunningContext;
 import com.powsybl.shortcircuits.converter.ShortCircuitAnalysisResultExporters;
-import com.powsybl.shortcircuits.json.JsonShortCircuitsParameters;
+import com.powsybl.shortcircuits.json.JsonShortCircuitParameters;
 
 /**
  * @author Boubakeur Brahimi
@@ -98,21 +98,21 @@ public class ShortCircuitAnalysisTool implements Tool {
         }
         ComputationManager computationManager = context.getShortTimeExecutionComputationManager();
 
-        ShortCircuitsParameters parameters = ShortCircuitsParameters.load();
+        ShortCircuitParameters parameters = ShortCircuitParameters.load();
         if (line.hasOption(PARAMETERS_FILE)) {
             Path parametersFile = context.getFileSystem().getPath(line.getOptionValue(PARAMETERS_FILE));
-            JsonShortCircuitsParameters.update(parameters, parametersFile);
+            JsonShortCircuitParameters.update(parameters, parametersFile);
         }
 
-        ShortCircuitsAnalysisResult shortCircuitsAnalysisResult = ShortCircuitsAnalysis.runAsync(network, parameters, computationManager).join();
+        ShortCircuitAnalysisResult shortCircuitAnalysisResult = ShortCircuitAnalysis.runAsync(network, parameters, computationManager).join();
 
-        if (shortCircuitsAnalysisResult != null) {
+        if (shortCircuitAnalysisResult != null) {
             if (outputFile != null) {
                 context.getOutputStream().println("Writing results to '" + outputFile + "'");
-                ShortCircuitAnalysisResultExporters.export(shortCircuitsAnalysisResult, outputFile, format, network);
+                ShortCircuitAnalysisResultExporters.export(shortCircuitAnalysisResult, outputFile, format, network);
             } else {
                 Writer writer = new OutputStreamWriter(context.getOutputStream());
-                ShortCircuitAnalysisResultExporters.export(shortCircuitsAnalysisResult, writer, "ASCII", network);
+                ShortCircuitAnalysisResultExporters.export(shortCircuitAnalysisResult, writer, "ASCII", network);
             }
         } else {
             context.getErrorStream().println("Error. No results to be display !");

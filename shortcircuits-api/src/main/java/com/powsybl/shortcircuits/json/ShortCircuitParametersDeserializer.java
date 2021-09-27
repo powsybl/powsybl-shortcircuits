@@ -16,26 +16,26 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.powsybl.commons.extensions.Extension;
 import com.powsybl.commons.json.JsonUtil;
-import com.powsybl.shortcircuits.ShortCircuitsParameters;
+import com.powsybl.shortcircuits.ShortCircuitParameters;
 
 /**
  * @author Boubakeur Brahimi
  */
-public class ShortCircuitsParametersDeserializer extends StdDeserializer<ShortCircuitsParameters> {
+public class ShortCircuitParametersDeserializer extends StdDeserializer<ShortCircuitParameters> {
 
-    public ShortCircuitsParametersDeserializer() {
-        super(ShortCircuitsParameters.class);
+    public ShortCircuitParametersDeserializer() {
+        super(ShortCircuitParameters.class);
     }
 
     @Override
-    public ShortCircuitsParameters deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public ShortCircuitParameters deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 
-        return deserialize(jsonParser, deserializationContext, new ShortCircuitsParameters());
+        return deserialize(jsonParser, deserializationContext, new ShortCircuitParameters());
     }
 
-    public ShortCircuitsParameters deserialize(JsonParser parser, DeserializationContext deserializationContext, ShortCircuitsParameters parameters) throws IOException {
+    public ShortCircuitParameters deserialize(JsonParser parser, DeserializationContext deserializationContext, ShortCircuitParameters parameters) throws IOException {
 
-        List<Extension<ShortCircuitsParameters>> extensions = Collections.emptyList();
+        List<Extension<ShortCircuitParameters>> extensions = Collections.emptyList();
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             switch (parser.getCurrentName()) {
 
@@ -45,7 +45,7 @@ public class ShortCircuitsParametersDeserializer extends StdDeserializer<ShortCi
 
                 case "extensions":
                     parser.nextToken();
-                    extensions = JsonUtil.readExtensions(parser, deserializationContext, JsonShortCircuitsParameters.getExtensionSerializers());
+                    extensions = JsonUtil.readExtensions(parser, deserializationContext, JsonShortCircuitParameters.getExtensionSerializers());
                     break;
 
                 default:
@@ -53,7 +53,7 @@ public class ShortCircuitsParametersDeserializer extends StdDeserializer<ShortCi
             }
         }
 
-        JsonShortCircuitsParameters.getExtensionSerializers().addExtensions(parameters, extensions);
+        JsonShortCircuitParameters.getExtensionSerializers().addExtensions(parameters, extensions);
 
         return parameters;
     }
