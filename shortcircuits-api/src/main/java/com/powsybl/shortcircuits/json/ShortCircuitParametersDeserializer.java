@@ -33,6 +33,7 @@ public class ShortCircuitParametersDeserializer extends StdDeserializer<ShortCir
         return deserialize(jsonParser, deserializationContext, new ShortCircuitParameters());
     }
 
+    @Override
     public ShortCircuitParameters deserialize(JsonParser parser, DeserializationContext deserializationContext, ShortCircuitParameters parameters) throws IOException {
 
         List<Extension<ShortCircuitParameters>> extensions = Collections.emptyList();

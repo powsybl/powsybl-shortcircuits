@@ -7,8 +7,8 @@
 package com.powsybl.shortcircuits;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
-import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.powsybl.commons.config.PlatformConfig;
 import com.powsybl.commons.extensions.AbstractExtendable;

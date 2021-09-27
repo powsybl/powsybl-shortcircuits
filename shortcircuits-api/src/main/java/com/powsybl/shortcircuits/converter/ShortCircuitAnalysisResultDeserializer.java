@@ -12,7 +12,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.powsybl.commons.extensions.*;
 import com.powsybl.commons.json.JsonUtil;
@@ -21,6 +20,7 @@ import com.powsybl.security.NetworkMetadata;
 import com.powsybl.shortcircuits.FaultResult;
 import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
 
+import java.util.function.Supplier;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;

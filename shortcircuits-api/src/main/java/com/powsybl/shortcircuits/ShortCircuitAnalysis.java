@@ -32,6 +32,7 @@ public final class ShortCircuitAnalysis {
 
     public static final class Runner implements Versionable {
         private final ShortCircuitAnalysisProvider provider;
+        private String nullNetworkMessage = "Network should not be null";
 
         private Runner(ShortCircuitAnalysisProvider provider) {
             this.provider = Objects.requireNonNull(provider);
@@ -40,14 +41,14 @@ public final class ShortCircuitAnalysis {
         public CompletableFuture<ShortCircuitAnalysisResult> runAsync(Network network,
                                                                       ShortCircuitParameters parameters,
                                                                       ComputationManager computationManager) {
-            Objects.requireNonNull(network, "Network should not be null");
+            Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
             Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
             return provider.run(network, parameters, computationManager);
         }
 
         public ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters, ComputationManager computationManager) {
-            Objects.requireNonNull(network, "Network should not be null");
+            Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
             Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
             return provider.run(network, parameters, computationManager).join();
@@ -58,7 +59,7 @@ public final class ShortCircuitAnalysis {
         }
 
         public ShortCircuitAnalysisResult run(Network network) {
-            Objects.requireNonNull(network, "Network should not be null");
+            Objects.requireNonNull(network, nullNetworkMessage);
             return run(network, ShortCircuitParameters.load());
         }
 

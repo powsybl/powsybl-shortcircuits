@@ -16,7 +16,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Bertrand Rix <bertrand.rix at artelys.com>
@@ -29,7 +29,7 @@ public class ShortCircuitAnalysisTest {
         ShortCircuitAnalysisProvider provider = new ShortCircuitAnalysisProvider() {
             @Override
             public String getName() {
-                return "DummyProvicer";
+                return "DummyProvider";
             }
 
             @Override
@@ -57,8 +57,8 @@ public class ShortCircuitAnalysisTest {
 
         ShortCircuitAnalysisResult res = provider.run(null, null, null).join();
 
-        assertTrue(res.getFaultResults().size() == 0);
-        assertTrue(res.getLimitViolations().size() == 0);
+        assertEquals(0, res.getFaultResults().size());
+        assertEquals(0, res.getLimitViolations().size());
     }
 
     @Test
