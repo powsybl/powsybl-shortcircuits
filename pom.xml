@@ -54,8 +54,7 @@
 
     <properties>
         <java.version>11</java.version>
-
-        <powsybl-core.version>4.2.0</powsybl-core.version>
+        <powsybl-core.version>4.4.0</powsybl-core.version>
     </properties>
 
     <build>
