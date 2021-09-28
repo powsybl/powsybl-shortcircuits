@@ -81,6 +81,6 @@ public class GeneratorShortCircuitTest {
         Generator gen = network.getGenerator("GEN");
         assertNotNull(gen);
         PowsyblException e = assertThrows(PowsyblException.class, () -> gen.newExtension(GeneratorShortCircuitAdder.class).withDirectTransX(Double.NaN).add());
-        assertEquals(e.getMessage(), "Undefined directTransX");
+        assertEquals("Undefined directTransX", e.getMessage());
     }
 }
