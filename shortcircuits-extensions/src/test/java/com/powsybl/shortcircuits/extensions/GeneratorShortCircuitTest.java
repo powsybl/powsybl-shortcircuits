@@ -58,4 +58,20 @@ public class GeneratorShortCircuitTest {
         generatorShortCircuit.setStepUpTransformerX(10);
         assertEquals(10, generatorShortCircuit.getStepUpTransformerX(), 0);
     }
+
+    @Test
+    public void testWithoutSubTransX() {
+        Network network = EurostagTutorialExample1Factory.create();
+        Generator gen = network.getGenerator("GEN");
+        assertNotNull(gen);
+        gen.newExtension(GeneratorShortCircuitAdder.class)
+                .withDirectTransX(20)
+                .add();
+        GeneratorShortCircuit generatorShortCircuit = gen.getExtension(GeneratorShortCircuit.class);
+        assertEquals(20, generatorShortCircuit.getDirectTransX(), 0);
+        assertEquals(Double.NaN, generatorShortCircuit.getDirectSubtransX(), 0);
+        assertEquals(Double.NaN, generatorShortCircuit.getStepUpTransformerX(), 0);
+        generatorShortCircuit.setDirectTransX(10);
+        assertEquals(10, generatorShortCircuit.getDirectTransX(), 0);
+    }
 }

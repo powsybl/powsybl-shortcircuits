@@ -18,7 +18,7 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
         implements GeneratorShortCircuitAdder {
 
     double directTransX = 0;
-    double directSubtransX = 0;
+    double directSubtransX = Double.NaN;
     double stepUpTransformerX = Double.NaN;
 
     protected GeneratorShortCircuitAdderImpl(Generator extendable) {
@@ -27,7 +27,7 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
 
     @Override
     protected GeneratorShortCircuit createExtension(Generator extendable) {
-        return new GeneratorShortCircuitImpl(extendable, directTransX, directSubtransX, stepUpTransformerX);
+        return new GeneratorShortCircuitImpl(extendable, directSubtransX, directTransX, stepUpTransformerX);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GeneratorShortCircuitAdderImpl extends AbstractExtensionAdder<Gener
 
     @Override
     public Generator add() {
-        if (Double.isNaN(directSubtransX) || Double.isNaN(directTransX)) {
+        if (Double.isNaN(directTransX)) {
             throw new PowsyblException("Undefined directSubtransX or directTransX");
         }
         return super.add();
