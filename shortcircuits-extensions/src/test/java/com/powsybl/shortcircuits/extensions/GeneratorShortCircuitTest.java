@@ -80,13 +80,7 @@ public class GeneratorShortCircuitTest {
         Network network = EurostagTutorialExample1Factory.create();
         Generator gen = network.getGenerator("GEN");
         assertNotNull(gen);
-        try {
-            gen.newExtension(GeneratorShortCircuitAdder.class)
-                    .withDirectTransX(Double.NaN)
-                    .add();
-            fail("Should throw exception when DirectTransX is NaN as it is mandatory");
-        } catch (PowsyblException e) {
-            assert e.getMessage().contains("Undefined directTransX");
-        }
+        PowsyblException e = assertThrows(PowsyblException.class, () -> gen.newExtension(GeneratorShortCircuitAdder.class).withDirectTransX(Double.NaN).add());
+        assertEquals(e.getMessage(), "Undefined directTransX");
     }
 }
