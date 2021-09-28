@@ -36,9 +36,6 @@ public class GeneratorShortCircuitImpl extends AbstractExtension<Generator> impl
 
     @Override
     public GeneratorShortCircuit setDirectSubtransX(double directSubtransX) {
-        if (Double.isNaN(directSubtransX)) {
-            throw new PowsyblException("Undefined directSubtranX");
-        }
         this.directSubtransX = directSubtransX;
         return this;
     }
