@@ -25,7 +25,7 @@ public class GeneratorShortCircuitXmlSerializer extends AbstractExtensionXmlSeri
 
     public GeneratorShortCircuitXmlSerializer() {
         super("generatorShortCircuit", "network", GeneratorShortCircuit.class, false,
-                "generatorShortCircuit.xsd", "http://www.powsybl.org/schema/iidm/ext/generator_short_circuit/1_0",
+                "generatorShortCircuit.xsd", "http://www.itesla_project.eu/schema/iidm/ext/generator_short_circuit/1_0",
                 "gsc");
     }
 
