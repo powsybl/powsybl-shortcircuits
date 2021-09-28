@@ -86,7 +86,7 @@ public class GeneratorShortCircuitTest {
                     .add();
             fail("Should throw exception when DirectTransX is NaN as it is mandatory");
         } catch (PowsyblException e) {
-            assert(e.getMessage().contains("Undefined directTransX"));
+            assert e.getMessage().contains("Undefined directTransX");
         }
     }
 }
