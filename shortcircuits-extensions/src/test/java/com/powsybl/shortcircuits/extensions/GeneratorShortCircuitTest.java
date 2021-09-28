@@ -6,13 +6,13 @@
  */
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
@@ -73,5 +73,20 @@ public class GeneratorShortCircuitTest {
         assertEquals(Double.NaN, generatorShortCircuit.getStepUpTransformerX(), 0);
         generatorShortCircuit.setDirectTransX(10);
         assertEquals(10, generatorShortCircuit.getDirectTransX(), 0);
+    }
+
+    @Test
+    public void testWithoutTransX() {
+        Network network = EurostagTutorialExample1Factory.create();
+        Generator gen = network.getGenerator("GEN");
+        assertNotNull(gen);
+        try {
+            gen.newExtension(GeneratorShortCircuitAdder.class)
+                    .withDirectTransX(Double.NaN)
+                    .add();
+            fail("Should throw exception when DirectTransX is NaN as it is mandatory");
+        } catch (PowsyblException e) {
+            assert(e.getMessage().contains("Undefined directTransX"));
+        }
     }
 }
