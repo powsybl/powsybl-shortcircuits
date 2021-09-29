@@ -6,17 +6,20 @@
  */
 package com.powsybl.shortcircuits;
 
-import com.powsybl.commons.PowsyblException;
 import com.powsybl.computation.ComputationManager;
 import com.powsybl.iidm.network.Network;
+import com.powsybl.iidm.network.VariantManager;
 import com.powsybl.shortcircuits.interceptors.ShortCircuitAnalysisInterceptor;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Bertrand Rix <bertrand.rix at artelys.com>
@@ -61,8 +64,51 @@ public class ShortCircuitAnalysisTest {
         assertEquals(0, res.getLimitViolations().size());
     }
 
-    @Test
-    public void shortCircuitAnalysisWithDefaultProvider() {
-        Assert.assertThrows(PowsyblException.class, () -> ShortCircuitAnalysis.runAsync(null, null, null));
+    private static final String DEFAULT_PROVIDER_NAME = "ShortCircuitAnalysisMock";
+
+    private Network network;
+    private ComputationManager computationManager;
+    private ShortCircuitParameters shortCircuitParameters;
+
+    @Before
+    public void setUp() {
+        network = Mockito.mock(Network.class);
+        VariantManager variantManager = Mockito.mock(VariantManager.class);
+        Mockito.when(network.getVariantManager()).thenReturn(variantManager);
+        Mockito.when(variantManager.getWorkingVariantId()).thenReturn("v");
+        computationManager = Mockito.mock(ComputationManager.class);
+        shortCircuitParameters = Mockito.mock(ShortCircuitParameters.class);
     }
+
+    @Test
+    public void testDefaultProvider() {
+        ShortCircuitAnalysis.Runner defaultShortCircuitAnalysisRunner = ShortCircuitAnalysis.find();
+        assertEquals(DEFAULT_PROVIDER_NAME, defaultShortCircuitAnalysisRunner.getName());
+        assertEquals("1.0", defaultShortCircuitAnalysisRunner.getVersion());
+    }
+
+    @Test
+    public void testAsyncDefaultProvider() throws InterruptedException, ExecutionException {
+        CompletableFuture<ShortCircuitAnalysisResult> result = ShortCircuitAnalysis.runAsync(network, new ShortCircuitParameters(), computationManager);
+        assertNotNull(result.get());
+    }
+
+    @Test
+    public void testSyncDefaultProvider() {
+        ShortCircuitAnalysisResult result = ShortCircuitAnalysis.run(network, new ShortCircuitParameters(), computationManager);
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testSyncDefaultProviderWithoutComputationManager() {
+        ShortCircuitAnalysisResult result = ShortCircuitAnalysis.run(network, new ShortCircuitParameters());
+        assertNotNull(result);
+    }
+
+    @Test
+    public void testSyncDefaultProviderWithoutParameters() {
+        ShortCircuitAnalysisResult result = ShortCircuitAnalysis.run(network);
+        assertNotNull(result);
+    }
+
 }
