@@ -81,9 +81,9 @@ public final class ShortCircuitAnalysis {
     }
 
     /**
-     * Get a runner for default security analysis implementation.
+     * Get a runner for default short circuit analysis implementation.
      *
-     * @return a runner for default security analysis implementation
+     * @return a runner for default short circuit analysis implementation
      * @throws PowsyblException in case we cannot find a default implementation
      */
     public static Runner find() {
