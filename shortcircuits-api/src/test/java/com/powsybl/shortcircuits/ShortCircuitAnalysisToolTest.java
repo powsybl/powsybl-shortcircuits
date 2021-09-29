@@ -54,7 +54,6 @@ public class ShortCircuitAnalysisToolTest extends AbstractToolTest {
         assertCommand(new String[] {COMMAND_NAME, "--case-file", "wrongFile.uct"}, 3, null, "com.powsybl.commons.PowsyblException: File wrongFile.uct does not exist or is not a regular file");
     }
 
-
     @Test
     public void checkThrowsWhenOutputFileAndNoFormat() throws IOException {
         assertCommand(new String[] {COMMAND_NAME, "--case-file", "test.uct", "--output-file", "out.txt"}, 2, "", "error: Missing required option: output-format");
