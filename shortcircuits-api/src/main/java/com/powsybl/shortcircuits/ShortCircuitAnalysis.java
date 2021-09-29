@@ -43,14 +43,14 @@ public final class ShortCircuitAnalysis {
                                                                       ComputationManager computationManager) {
             Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
-            Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
+            Objects.requireNonNull(parameters, "Short circuit parameters should not be null");
             return provider.run(network, parameters, computationManager);
         }
 
         public ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters, ComputationManager computationManager) {
             Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
-            Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
+            Objects.requireNonNull(parameters, "Short circuit parameters should not be null");
             return provider.run(network, parameters, computationManager).join();
         }
 
