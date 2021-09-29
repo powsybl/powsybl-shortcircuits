@@ -115,7 +115,7 @@ public class ShortCircuitAnalysisTool implements Tool {
                 ShortCircuitAnalysisResultExporters.export(shortCircuitAnalysisResult, writer, "ASCII", network);
             }
         } else {
-            context.getErrorStream().println("Error. No results to be display !");
+            context.getErrorStream().println("Error. No results to be displayed!");
         }
     }
 }

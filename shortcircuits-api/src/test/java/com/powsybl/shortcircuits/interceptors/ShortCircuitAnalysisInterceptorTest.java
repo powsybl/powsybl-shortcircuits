@@ -9,7 +9,6 @@ package com.powsybl.shortcircuits.interceptors;
 import org.junit.Test;
 
 /**
- *
  * @author Coline Piloquet <coline.piloquet@rte-france.fr>
  */
 import static org.junit.Assert.fail;

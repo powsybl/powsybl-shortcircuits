@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 /**
- *
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
  */
 @AutoService(ShortCircuitAnalysisProvider.class)

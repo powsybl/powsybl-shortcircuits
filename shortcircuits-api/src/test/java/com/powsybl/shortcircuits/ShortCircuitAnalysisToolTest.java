@@ -6,9 +6,11 @@
  */
 package com.powsybl.shortcircuits;
 
+import java.io.IOException;
 import java.util.Collections;
 
 import com.powsybl.tools.AbstractToolTest;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.powsybl.tools.Tool;
@@ -18,13 +20,14 @@ import com.powsybl.tools.Tool;
  */
 public class ShortCircuitAnalysisToolTest extends AbstractToolTest {
 
-    private ShortCircuitAnalysisTool shortCircuitTool;
+    private ShortCircuitAnalysisTool shortCircuitTool = new ShortCircuitAnalysisTool();
+    private static final String COMMAND_NAME = "shortcircuit";
 
     @Override
+    @Before
     public void setUp() throws Exception {
         super.setUp();
-
-        shortCircuitTool = new ShortCircuitAnalysisTool();
+        createFile("test.uct", "");
     }
 
     @Override
@@ -39,9 +42,21 @@ public class ShortCircuitAnalysisToolTest extends AbstractToolTest {
 
     @Override
     public void assertCommand() {
+        assertCommand(shortCircuitTool.getCommand(), COMMAND_NAME, 4, 1);
         assertOption(shortCircuitTool.getCommand().getOptions(), "case-file", true, true);
         assertOption(shortCircuitTool.getCommand().getOptions(), "output-file", false, true);
         assertOption(shortCircuitTool.getCommand().getOptions(), "output-format", false, true);
+        assertOption(shortCircuitTool.getCommand().getOptions(), "parameters-file", false, true);
     }
 
+    @Test
+    public void checkFailsWhenNetworkFileNotFound() throws IOException {
+        assertCommand(new String[] {COMMAND_NAME, "--case-file", "wrongFile.uct"}, 3, null, "com.powsybl.commons.PowsyblException: File wrongFile.uct does not exist or is not a regular file");
+    }
+
+
+    @Test
+    public void checkThrowsWhenOutputFileAndNoFormat() throws IOException {
+        assertCommand(new String[] {COMMAND_NAME, "--case-file", "test.uct", "--output-file", "out.txt"}, 2, "", "error: Missing required option: output-format");
+    }
 }
