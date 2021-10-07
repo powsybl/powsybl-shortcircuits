@@ -69,6 +69,7 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
         return this;
     }
 
+<<<<<<< HEAD
     @Override
     public MagneticCircuit getMagneticCircuitType() {
         return magneticCircuitType;
@@ -91,4 +92,6 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
         return this;
     }
 
+=======
+>>>>>>> origin/T2E_extension_JB
 }
