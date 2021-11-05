@@ -7,8 +7,8 @@
 package com.powsybl.shortcircuits;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
-import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.powsybl.commons.config.PlatformConfig;
 import com.powsybl.commons.extensions.AbstractExtendable;
@@ -22,23 +22,23 @@ import com.powsybl.commons.extensions.ExtensionProviders;
  *
  * @author Boubakeur Brahimi
  */
-public class ShortCircuitsParameters extends AbstractExtendable<ShortCircuitsParameters> {
+public class ShortCircuitParameters extends AbstractExtendable<ShortCircuitParameters> {
 
-    public interface ConfigLoader<E extends Extension<ShortCircuitsParameters>>
-            extends ExtensionConfigLoader<ShortCircuitsParameters, E> {
+    public interface ConfigLoader<E extends Extension<ShortCircuitParameters>>
+            extends ExtensionConfigLoader<ShortCircuitParameters, E> {
     }
 
     private static final Supplier<ExtensionProviders<ConfigLoader>> SUPPLIER = Suppliers
             .memoize(() -> ExtensionProviders.createProvider(ConfigLoader.class, "short-circuit-parameters"));
 
-    public static ShortCircuitsParameters load() {
+    public static ShortCircuitParameters load() {
         return load(PlatformConfig.defaultConfig());
     }
 
-    public static ShortCircuitsParameters load(PlatformConfig platformConfig) {
+    public static ShortCircuitParameters load(PlatformConfig platformConfig) {
         Objects.requireNonNull(platformConfig);
 
-        ShortCircuitsParameters parameters = new ShortCircuitsParameters();
+        ShortCircuitParameters parameters = new ShortCircuitParameters();
         parameters.readExtensions(platformConfig);
 
         return parameters;

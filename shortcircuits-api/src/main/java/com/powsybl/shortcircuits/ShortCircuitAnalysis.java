@@ -24,42 +24,43 @@ import java.util.concurrent.CompletableFuture;
  * @author Bertrand Rix <bertrand.rix at artelys.com>
  * @author Miora Ralambotiana <miora.ralambotiana at rte-france.com>
  */
-public final class ShortCircuitsAnalysis {
+public final class ShortCircuitAnalysis {
 
-    private ShortCircuitsAnalysis() {
+    private ShortCircuitAnalysis() {
         throw new AssertionError("Utility class should not been instantiated");
     }
 
     public static final class Runner implements Versionable {
-        private final ShortCircuitsAnalysisProvider provider;
+        private final ShortCircuitAnalysisProvider provider;
+        private String nullNetworkMessage = "Network should not be null";
 
-        private Runner(ShortCircuitsAnalysisProvider provider) {
+        private Runner(ShortCircuitAnalysisProvider provider) {
             this.provider = Objects.requireNonNull(provider);
         }
 
-        public CompletableFuture<ShortCircuitsAnalysisResult> runAsync(Network network,
-                                                                       ShortCircuitsParameters parameters,
-                                                                       ComputationManager computationManager) {
-            Objects.requireNonNull(network, "Network should not be null");
+        public CompletableFuture<ShortCircuitAnalysisResult> runAsync(Network network,
+                                                                      ShortCircuitParameters parameters,
+                                                                      ComputationManager computationManager) {
+            Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
-            Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
+            Objects.requireNonNull(parameters, "Short circuit parameters should not be null");
             return provider.run(network, parameters, computationManager);
         }
 
-        public ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters, ComputationManager computationManager) {
-            Objects.requireNonNull(network, "Network should not be null");
+        public ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters, ComputationManager computationManager) {
+            Objects.requireNonNull(network, nullNetworkMessage);
             Objects.requireNonNull(computationManager, "ComputationManager should not be null");
-            Objects.requireNonNull(parameters, "Security analysis parameters should not be null");
+            Objects.requireNonNull(parameters, "Short circuit parameters should not be null");
             return provider.run(network, parameters, computationManager).join();
         }
 
-        public ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters) {
+        public ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters) {
             return run(network, parameters, LocalComputationManager.getDefault());
         }
 
-        public ShortCircuitsAnalysisResult run(Network network) {
-            Objects.requireNonNull(network, "Network should not be null");
-            return run(network, ShortCircuitsParameters.load());
+        public ShortCircuitAnalysisResult run(Network network) {
+            Objects.requireNonNull(network, nullNetworkMessage);
+            return run(network, ShortCircuitParameters.load());
         }
 
         @Override
@@ -75,34 +76,34 @@ public final class ShortCircuitsAnalysis {
 
     public static Runner find(String name) {
         return new Runner(PlatformConfigNamedProvider.Finder
-                .find(name, "shortcircuits-analysis", ShortCircuitsAnalysisProvider.class,
+                .find(name, "shortcircuits-analysis", ShortCircuitAnalysisProvider.class,
                         PlatformConfig.defaultConfig()));
     }
 
     /**
-     * Get a runner for default security analysis implementation.
+     * Get a runner for default short circuit analysis implementation.
      *
-     * @return a runner for default security analysis implementation
+     * @return a runner for default short circuit analysis implementation
      * @throws PowsyblException in case we cannot find a default implementation
      */
     public static Runner find() {
         return find(null);
     }
 
-    public static CompletableFuture<ShortCircuitsAnalysisResult> runAsync(Network network, ShortCircuitsParameters parameters,
-                                                                          ComputationManager computationManager) {
+    public static CompletableFuture<ShortCircuitAnalysisResult> runAsync(Network network, ShortCircuitParameters parameters,
+                                                                         ComputationManager computationManager) {
         return find().runAsync(network, parameters, computationManager);
     }
 
-    public static ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters, ComputationManager computationManager) {
+    public static ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters, ComputationManager computationManager) {
         return find().run(network, parameters, computationManager);
     }
 
-    public static ShortCircuitsAnalysisResult run(Network network, ShortCircuitsParameters parameters) {
+    public static ShortCircuitAnalysisResult run(Network network, ShortCircuitParameters parameters) {
         return find().run(network, parameters);
     }
 
-    public static ShortCircuitsAnalysisResult run(Network network) {
+    public static ShortCircuitAnalysisResult run(Network network) {
         return find().run(network);
     }
 }

@@ -14,15 +14,15 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.auto.service.AutoService;
 import com.powsybl.commons.json.JsonUtil;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
 
 /**
  * Exports a short circuit analysis result in JSON format.
  *
  * @author Teofil-Calin BANC <teofil-calin.banc at rte-france.com>
  */
-@AutoService(ShortCircuitsAnalysisResultExporter.class)
-public class JsonShortCircuitsAnalysisResultExporter implements ShortCircuitsAnalysisResultExporter {
+@AutoService(ShortCircuitAnalysisResultExporter.class)
+public class JsonShortCircuitAnalysisResultExporter implements ShortCircuitAnalysisResultExporter {
 
     @Override
     public String getFormat() {
@@ -35,9 +35,9 @@ public class JsonShortCircuitsAnalysisResultExporter implements ShortCircuitsAna
     }
 
     @Override
-    public void export(ShortCircuitsAnalysisResult result, Writer writer, Network network) throws IOException {
+    public void export(ShortCircuitAnalysisResult result, Writer writer, Network network) throws IOException {
         ObjectMapper objectMapper = JsonUtil.createObjectMapper()
-                .registerModule(new ShortCircuitsAnalysisJsonModule());
+                .registerModule(new ShortCircuitAnalysisJsonModule());
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(writer, result);

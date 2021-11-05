@@ -19,10 +19,10 @@ import java.util.ServiceLoader;
 
 import com.powsybl.commons.PowsyblException;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
 
 /**
- * Provides easy access to known implementations of result "exporters". ({@link ShortCircuitsAnalysisResultExporter})
+ * Provides easy access to known implementations of result "exporters". ({@link ShortCircuitAnalysisResultExporter})
  *
  * @author Boubakeur Brahimi
  */
@@ -33,15 +33,15 @@ public final class ShortCircuitAnalysisResultExporters {
 
     public static Collection<String> getFormats() {
         List<String> formats = new ArrayList<>();
-        for (ShortCircuitsAnalysisResultExporter e : ServiceLoader.load(ShortCircuitsAnalysisResultExporter.class, ShortCircuitAnalysisResultExporters.class.getClassLoader())) {
+        for (ShortCircuitAnalysisResultExporter e : ServiceLoader.load(ShortCircuitAnalysisResultExporter.class, ShortCircuitAnalysisResultExporters.class.getClassLoader())) {
             formats.add(e.getFormat());
         }
         return formats;
     }
 
-    public static ShortCircuitsAnalysisResultExporter getExporter(String format) {
+    public static ShortCircuitAnalysisResultExporter getExporter(String format) {
         Objects.requireNonNull(format);
-        for (ShortCircuitsAnalysisResultExporter e : ServiceLoader.load(ShortCircuitsAnalysisResultExporter.class, ShortCircuitAnalysisResultExporters.class.getClassLoader())) {
+        for (ShortCircuitAnalysisResultExporter e : ServiceLoader.load(ShortCircuitAnalysisResultExporter.class, ShortCircuitAnalysisResultExporters.class.getClassLoader())) {
             if (format.equals(e.getFormat())) {
                 return e;
             }
@@ -49,7 +49,7 @@ public final class ShortCircuitAnalysisResultExporters {
         return null;
     }
 
-    public static void export(ShortCircuitsAnalysisResult result, Path path, String format, Network network) {
+    public static void export(ShortCircuitAnalysisResult result, Path path, String format, Network network) {
         Objects.requireNonNull(path);
         try (Writer writer = Files.newBufferedWriter(path)) {
             export(result, writer, format, network);
@@ -58,12 +58,12 @@ public final class ShortCircuitAnalysisResultExporters {
         }
     }
 
-    public static void export(ShortCircuitsAnalysisResult result, Writer writer, String format, Network network) throws IOException {
+    public static void export(ShortCircuitAnalysisResult result, Writer writer, String format, Network network) throws IOException {
         Objects.requireNonNull(result);
         Objects.requireNonNull(writer);
         Objects.requireNonNull(format);
 
-        ShortCircuitsAnalysisResultExporter exporter = getExporter(format);
+        ShortCircuitAnalysisResultExporter exporter = getExporter(format);
         if (exporter == null) {
             throw new PowsyblException("Unsupported format: " + format + " [" + getFormats() + "]");
         }

@@ -22,7 +22,7 @@ import java.util.Objects;
  *
  * @author Boubakeur Brahimi
  */
-public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuitsAnalysisResult> {
+public class ShortCircuitAnalysisResult extends AbstractExtendable<ShortCircuitAnalysisResult> {
 
     private NetworkMetadata networkMetadata;
 
@@ -30,7 +30,7 @@ public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuit
 
     private final List<LimitViolation> limitViolations = new ArrayList<>();
 
-    public ShortCircuitsAnalysisResult(List<FaultResult> faultResults, List<LimitViolation> limitViolations) {
+    public ShortCircuitAnalysisResult(List<FaultResult> faultResults, List<LimitViolation> limitViolations) {
         this.faultResults.addAll(Objects.requireNonNull(faultResults));
         this.limitViolations.addAll(Objects.requireNonNull(limitViolations));
     }
@@ -55,7 +55,7 @@ public class ShortCircuitsAnalysisResult extends AbstractExtendable<ShortCircuit
         return networkMetadata;
     }
 
-    public ShortCircuitsAnalysisResult setNetworkMetadata(NetworkMetadata networkMetadata) {
+    public ShortCircuitAnalysisResult setNetworkMetadata(NetworkMetadata networkMetadata) {
         this.networkMetadata = networkMetadata;
         return this;
     }

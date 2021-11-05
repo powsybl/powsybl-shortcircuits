@@ -12,21 +12,21 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.powsybl.commons.json.JsonUtil;
-import com.powsybl.shortcircuits.ShortCircuitsParameters;
+import com.powsybl.shortcircuits.ShortCircuitParameters;
 
 /**
  * @author Boubakeur Brahimi
  */
-public class ShortCircuitsParametersSerializer extends StdSerializer<ShortCircuitsParameters> {
+public class ShortCircuitParametersSerializer extends StdSerializer<ShortCircuitParameters> {
 
-    public ShortCircuitsParametersSerializer() {
-        super(ShortCircuitsParameters.class);
+    public ShortCircuitParametersSerializer() {
+        super(ShortCircuitParameters.class);
     }
 
     @Override
-    public void serialize(ShortCircuitsParameters parameters, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(ShortCircuitParameters parameters, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        JsonUtil.writeExtensions(parameters, jsonGenerator, serializerProvider, JsonShortCircuitsParameters.getExtensionSerializers());
+        JsonUtil.writeExtensions(parameters, jsonGenerator, serializerProvider, JsonShortCircuitParameters.getExtensionSerializers());
         jsonGenerator.writeEndObject();
     }
 

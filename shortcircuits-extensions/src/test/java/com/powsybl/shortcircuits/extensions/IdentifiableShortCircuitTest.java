@@ -6,13 +6,13 @@
  */
 package com.powsybl.shortcircuits.extensions;
 
+import com.powsybl.commons.PowsyblException;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.VoltageLevel;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
@@ -34,5 +34,14 @@ public class IdentifiableShortCircuitTest {
         identifiableShortCircuit.setIpMin(900);
         assertEquals(900, identifiableShortCircuit.getIpMin(), 0);
         assertEquals(1500, identifiableShortCircuit.getIpMax(), 0);
+    }
+
+    @Test
+    public void testWithoutIp() {
+        Network network = EurostagTutorialExample1Factory.create();
+        VoltageLevel voltageLevel = network.getVoltageLevel("VLLOAD");
+        assertNotNull(voltageLevel);
+        PowsyblException e = assertThrows(PowsyblException.class, () -> voltageLevel.newExtension(IdentifiableShortCircuitAdder.class).withIpMin(Double.NaN).withIpMax(Double.NaN).add());
+        assertEquals("Undefined ipMax or ipMin", e.getMessage());
     }
 }

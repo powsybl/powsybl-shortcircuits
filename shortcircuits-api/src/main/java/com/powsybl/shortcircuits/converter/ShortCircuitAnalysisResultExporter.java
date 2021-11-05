@@ -10,19 +10,19 @@ import java.io.IOException;
 import java.io.Writer;
 
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.ShortCircuitsAnalysisResult;
+import com.powsybl.shortcircuits.ShortCircuitAnalysisResult;
 
 /**
- * Implementations provide a method to write down the content of a {@link ShortCircuitsAnalysisResult}.
+ * Implementations provide a method to write down the content of a {@link ShortCircuitAnalysisResult}.
  *
  * @author Boubakeur Brahimi
  */
-public interface ShortCircuitsAnalysisResultExporter {
+public interface ShortCircuitAnalysisResultExporter {
 
     String getFormat();
 
     String getComment();
 
-    void export(ShortCircuitsAnalysisResult result, Writer writer, Network network) throws IOException;
+    void export(ShortCircuitAnalysisResult result, Writer writer, Network network) throws IOException;
 
 }
