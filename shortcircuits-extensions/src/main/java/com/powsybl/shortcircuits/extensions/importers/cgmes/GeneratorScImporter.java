@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions.cgmesimporter;
+package com.powsybl.shortcircuits.extensions.importers.cgmes;
 
 import java.util.Objects;
 

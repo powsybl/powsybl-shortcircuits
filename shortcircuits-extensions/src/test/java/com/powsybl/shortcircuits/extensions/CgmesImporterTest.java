@@ -15,8 +15,8 @@ import com.powsybl.iidm.network.BusbarSection;
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.NetworkFactory;
-import com.powsybl.shortcircuits.extensions.cgmesimporter.CgmesScImporter;
-import com.powsybl.shortcircuits.extensions.cgmesimporter.CgmesScModel;
+import com.powsybl.shortcircuits.extensions.importers.cgmes.CgmesScImporter;
+import com.powsybl.shortcircuits.extensions.importers.cgmes.CgmesScModel;
 
 import org.junit.Test;
 
