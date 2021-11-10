@@ -10,7 +10,11 @@ package com.powsybl.shortcircuits.extensions.importers.cgmes;
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-public abstract class AbstractScImporter {
+final class CgmesScImporterUtils {
+
+    private CgmesScImporterUtils() {
+
+    }
 
     static double impedanceToEngineeringUnit(double impedance, double vNominal, double sb) {
         if (Double.isNaN(impedance)) {

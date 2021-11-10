@@ -19,7 +19,7 @@ import com.powsybl.triplestore.api.PropertyBag;
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-class GeneratorScImporter extends AbstractScImporter {
+class GeneratorScImporter {
 
     private Network network;
 
@@ -39,8 +39,8 @@ class GeneratorScImporter extends AbstractScImporter {
         double satDirectTransXpu = synchrohousMachine.asDouble("satDirectTransX");
 
         double vNominal = generator.getTerminal().getVoltageLevel().getNominalV();
-        double satDirectSubtransX = impedanceToEngineeringUnit(satDirectSubtransXpu, vNominal, PerUnit.SB);
-        double satDirectTransX = impedanceToEngineeringUnit(satDirectTransXpu, vNominal, PerUnit.SB);
+        double satDirectSubtransX = CgmesScImporterUtils.impedanceToEngineeringUnit(satDirectSubtransXpu, vNominal, PerUnit.SB);
+        double satDirectTransX = CgmesScImporterUtils.impedanceToEngineeringUnit(satDirectTransXpu, vNominal, PerUnit.SB);
 
         if (!Double.isNaN(satDirectSubtransX) || !Double.isNaN(satDirectTransX)) {
             GeneratorShortCircuitAdder adder = generator.newExtension(GeneratorShortCircuitAdder.class);
