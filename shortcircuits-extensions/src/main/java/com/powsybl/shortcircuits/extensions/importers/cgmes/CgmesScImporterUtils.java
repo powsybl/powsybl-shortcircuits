@@ -10,7 +10,7 @@ package com.powsybl.shortcircuits.extensions.importers.cgmes;
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-final class CgmesScImporterUtils {
+public final class CgmesScImporterUtils {
 
     private CgmesScImporterUtils() {
 
@@ -21,12 +21,5 @@ final class CgmesScImporterUtils {
             return impedance;
         }
         return impedance * (vNominal * vNominal) / sb;
-    }
-
-    static double impedanceToPerUnit(double impedance, double vNominal, double sb) {
-        if (Double.isNaN(impedance)) {
-            return impedance;
-        }
-        return impedance * sb / (vNominal * vNominal);
     }
 }

@@ -31,6 +31,11 @@ import java.util.Properties;
 public class CgmesImporterTest {
 
     @Test
+    public void testCgmesScImporterUtils() {
+        CgmesScImporterUtils.
+    }
+
+    @Test
     public void testImportCgmesGeneratorShortCircuitData() {
         Network network = new CgmesImport().importData(CgmesConformity1Catalog.miniBusBranch().dataSource(),
             NetworkFactory.findDefault(), new Properties());
