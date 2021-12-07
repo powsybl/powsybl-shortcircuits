@@ -11,6 +11,7 @@ import com.powsybl.cgmes.conformity.test.CgmesConformity1Catalog;
 import com.powsybl.cgmes.conversion.CgmesImport;
 import com.powsybl.cgmes.conversion.CgmesModelExtension;
 import com.powsybl.cgmes.model.CgmesModel;
+import com.powsybl.iidm.network.Bus;
 import com.powsybl.iidm.network.BusbarSection;
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
@@ -78,6 +79,30 @@ public class CgmesImporterTest {
         assertEquals(0.6174, generatorShortCircuit.getDirectSubtransX(), tol);
         assertEquals(7.938, generatorShortCircuit.getDirectTransX(), tol);
         assertTrue(Double.isNaN(generatorShortCircuit.getStepUpTransformerX()));
+    }
+
+    @Test
+    public void testImportCgmesBranchModelBusbarSectionShortCircuitData() {
+        Network network = new CgmesImport().importData(ShortCircuitCgmesConformity1ModifiedCatalog.smallGridBusBranchWithBusbarSectionsAndIpMax().dataSource(),
+            NetworkFactory.findDefault(), new Properties());
+
+        CgmesModelExtension cgmesModelExtension = network.getExtension(CgmesModelExtension.class);
+        assertNotNull(cgmesModelExtension);
+        CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
+        assertNotNull(cgmesModel);
+
+        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
+        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+
+        Bus bus = network.getBusBreakerView().getBus("_0472a783-c766-11e1-8775-005056c00008");
+        assertNotNull(bus);
+
+        IdentifiableShortCircuit busShortCircuit = bus.getExtension(IdentifiableShortCircuit.class);
+        assertNotNull(busShortCircuit);
+
+        double tol = 0.000001;
+        assertEquals(0.0, busShortCircuit.getIpMin(), tol);
+        assertEquals(1000.0, busShortCircuit.getIpMax(), tol);
     }
 
     @Test

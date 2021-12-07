@@ -25,5 +25,12 @@ WHERE {
         a cim:BusbarSection ;
         cim:IdentifiedObject.name ?name .
         OPTIONAL { ?BusbarSection cim:BusbarSection.ipMax ?ipMax }
+    ?Terminal
+        a cim:Terminal ;
+        cim:Terminal.ConductingEquipment ?BusbarSection ;
+        cim:ACDCTerminal.sequenceNumber "1" .
+}}
+OPTIONAL { GRAPH ?graphTP {
+    ?Terminal cim:Terminal.TopologicalNode ?TopologicalNode
 }}
 }
