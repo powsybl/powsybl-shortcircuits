@@ -51,11 +51,6 @@
             <artifactId>powsybl-cgmes-conversion</artifactId>
             <version>${powsybl-core.version}</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>powsybl-triple-store-impl-rdf4j</artifactId>
-            <version>${powsybl-core.version}</version>
-        </dependency>
 
         <!-- Test dependencies -->
         <dependency>
@@ -67,11 +62,13 @@
             <groupId>com.powsybl</groupId>
             <artifactId>powsybl-cgmes-conformity</artifactId>
             <type>test-jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.powsybl</groupId>
             <artifactId>powsybl-cgmes-model</artifactId>
             <type>test-jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.powsybl</groupId>
@@ -86,6 +83,11 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.powsybl</groupId>
+            <artifactId>powsybl-triple-store-impl-rdf4j</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

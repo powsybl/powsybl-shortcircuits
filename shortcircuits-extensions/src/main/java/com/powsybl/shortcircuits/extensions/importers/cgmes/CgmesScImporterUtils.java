@@ -10,7 +10,7 @@ package com.powsybl.shortcircuits.extensions.importers.cgmes;
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-public final class CgmesScImporterUtils {
+final class CgmesScImporterUtils {
 
     private CgmesScImporterUtils() {
 

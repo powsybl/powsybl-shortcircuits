@@ -18,8 +18,8 @@ import com.powsybl.iidm.network.Network;
 
 public class CgmesScImporter {
 
-    private Network network;
-    private CgmesScModel cgmesScModel;
+    private final Network network;
+    private final CgmesScModel cgmesScModel;
 
     public CgmesScImporter(CgmesScModel cgmesScModel, Network network) {
         this.network = Objects.requireNonNull(network);

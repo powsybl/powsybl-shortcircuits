@@ -25,9 +25,9 @@ import com.powsybl.triplestore.api.PropertyBag;
  */
 class BusbarSectionScImporter {
 
-    private Network network;
+    private final Network network;
 
-    public BusbarSectionScImporter(Network network) {
+    BusbarSectionScImporter(Network network) {
         this.network = Objects.requireNonNull(network);
     }
 

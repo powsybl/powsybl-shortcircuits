@@ -21,9 +21,9 @@ import com.powsybl.triplestore.api.PropertyBag;
  */
 class GeneratorScImporter {
 
-    private Network network;
+    private final Network network;
 
-    public GeneratorScImporter(Network network) {
+    GeneratorScImporter(Network network) {
         this.network = Objects.requireNonNull(network);
     }
 
