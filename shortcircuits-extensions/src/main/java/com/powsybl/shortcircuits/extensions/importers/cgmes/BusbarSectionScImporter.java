@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 import com.powsybl.iidm.network.Bus;
 import com.powsybl.iidm.network.BusbarSection;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.extensions.IdentifiableShortCircuit;
-import com.powsybl.shortcircuits.extensions.IdentifiableShortCircuitAdder;
+import com.powsybl.iidm.network.extensions.IdentifiableShortCircuit;
+import com.powsybl.iidm.network.extensions.IdentifiableShortCircuitAdder;
 import com.powsybl.triplestore.api.PropertyBag;
 
 /**

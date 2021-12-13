@@ -11,7 +11,7 @@ import java.util.Objects;
 
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
-import com.powsybl.shortcircuits.extensions.GeneratorShortCircuitAdder;
+import com.powsybl.iidm.network.extensions.GeneratorShortCircuitAdder;
 import com.powsybl.shortcircuits.extensions.PerUnit;
 import com.powsybl.triplestore.api.PropertyBag;
 
