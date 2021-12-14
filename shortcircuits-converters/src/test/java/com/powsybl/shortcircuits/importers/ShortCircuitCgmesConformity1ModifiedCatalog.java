@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions;
+package com.powsybl.shortcircuits.importers;
 
 import com.powsybl.cgmes.model.test.TestGridModelResources;
 import com.powsybl.commons.datasource.ResourceSet;

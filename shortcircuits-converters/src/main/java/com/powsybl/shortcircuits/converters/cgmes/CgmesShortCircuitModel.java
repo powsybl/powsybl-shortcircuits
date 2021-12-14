@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions.importers.cgmes;
+package com.powsybl.shortcircuits.converters.cgmes;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ import com.powsybl.triplestore.api.TripleStore;
  * @author José Antonio Marqués <marquesja at aia.es>
  */
 
-public class CgmesScModel {
+public class CgmesShortCircuitModel {
 
     public static final String SYNCHRONOUS_MACHINE_SHORT_CIRCUIT_DATA_QUERY_KEY = "SynchronousMachineShortcircuitData";
     public static final String BUS_BAR_SECTION_SHORT_CIRCUIT_DATA_QUERY_KEY = "BusbarSectionShortcircuitData";
@@ -29,11 +29,11 @@ public class CgmesScModel {
     private final TripleStore tripleStore;
     private final QueryCatalog queryCatalog;
 
-    public CgmesScModel(TripleStore tripleStore) {
+    public CgmesShortCircuitModel(TripleStore tripleStore) {
         this(tripleStore, new QueryCatalog("CGMES-SHORT-CIRCUITS.sparql"));
     }
 
-    public CgmesScModel(TripleStore tripleStore, QueryCatalog queryCatalog) {
+    public CgmesShortCircuitModel(TripleStore tripleStore, QueryCatalog queryCatalog) {
         this.tripleStore = Objects.requireNonNull(tripleStore);
         this.queryCatalog = Objects.requireNonNull(queryCatalog);
     }
@@ -55,6 +55,6 @@ public class CgmesScModel {
         return queryTripleStore(BUS_BAR_SECTION_SHORT_CIRCUIT_DATA_QUERY_KEY);
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(CgmesScModel.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CgmesShortCircuitModel.class);
 }
 

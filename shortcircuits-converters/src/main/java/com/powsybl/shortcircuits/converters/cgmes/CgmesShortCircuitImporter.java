@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions.importers.cgmes;
+package com.powsybl.shortcircuits.converters.cgmes;
 
 import java.util.Objects;
 
@@ -16,12 +16,12 @@ import com.powsybl.iidm.network.Network;
  * @author José Antonio Marqués <marquesja at aia.es>
  */
 
-public class CgmesScImporter {
+public class CgmesShortCircuitImporter {
 
     private final Network network;
-    private final CgmesScModel cgmesScModel;
+    private final CgmesShortCircuitModel cgmesScModel;
 
-    public CgmesScImporter(CgmesScModel cgmesScModel, Network network) {
+    public CgmesShortCircuitImporter(CgmesShortCircuitModel cgmesScModel, Network network) {
         this.network = Objects.requireNonNull(network);
         this.cgmesScModel = Objects.requireNonNull(cgmesScModel);
     }
@@ -32,12 +32,12 @@ public class CgmesScImporter {
     }
 
     private void importBusBarSections() {
-        BusbarSectionScImporter busbarSectionScImporter = new BusbarSectionScImporter(network);
+        BusbarSectionShortCircuitImporter busbarSectionScImporter = new BusbarSectionShortCircuitImporter(network);
         cgmesScModel.getBusbarSectionsShortcircuitData().forEach(busbarSectionScImporter::importData);
     }
 
     private void importGenerators() {
-        GeneratorScImporter generatorImporter = new GeneratorScImporter(network);
+        GeneratorShortCircuitImporter generatorImporter = new GeneratorShortCircuitImporter(network);
         cgmesScModel.getSynchronousMachinesShortcircuitData().forEach(generatorImporter::importData);
     }
 }

@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions.importers.cgmes;
+package com.powsybl.shortcircuits.converters.cgmes;
 
 import java.util.Objects;
 
@@ -23,11 +23,11 @@ import com.powsybl.triplestore.api.PropertyBag;
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-class BusbarSectionScImporter {
+class BusbarSectionShortCircuitImporter {
 
     private final Network network;
 
-    BusbarSectionScImporter(Network network) {
+    BusbarSectionShortCircuitImporter(Network network) {
         this.network = Objects.requireNonNull(network);
     }
 
@@ -87,6 +87,6 @@ class BusbarSectionScImporter {
         }
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(BusbarSectionScImporter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BusbarSectionShortCircuitImporter.class);
 }
 

@@ -4,7 +4,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package com.powsybl.shortcircuits.extensions;
+package com.powsybl.shortcircuits.importers;
 
 import com.powsybl.cgmes.conformity.test.Cgmes3Catalog;
 import com.powsybl.cgmes.conformity.test.CgmesConformity1Catalog;
@@ -18,8 +18,8 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.NetworkFactory;
 import com.powsybl.iidm.network.extensions.GeneratorShortCircuit;
 import com.powsybl.iidm.network.extensions.IdentifiableShortCircuit;
-import com.powsybl.shortcircuits.extensions.importers.cgmes.CgmesScImporter;
-import com.powsybl.shortcircuits.extensions.importers.cgmes.CgmesScModel;
+import com.powsybl.shortcircuits.converters.cgmes.CgmesShortCircuitImporter;
+import com.powsybl.shortcircuits.converters.cgmes.CgmesShortCircuitModel;
 
 import org.junit.Test;
 
@@ -43,8 +43,8 @@ public class CgmesImporterTest {
         CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
         assertNotNull(cgmesModel);
 
-        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
-        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+        CgmesShortCircuitModel cgmesScModel = new CgmesShortCircuitModel(cgmesModel.tripleStore());
+        new CgmesShortCircuitImporter(cgmesScModel, network).importShortcircuitData();
 
         Generator generator = network.getGenerator("_392ea173-4f8e-48fa-b2a3-5c3721e93196");
         assertNotNull(generator);
@@ -68,8 +68,8 @@ public class CgmesImporterTest {
         CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
         assertNotNull(cgmesModel);
 
-        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
-        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+        CgmesShortCircuitModel cgmesScModel = new CgmesShortCircuitModel(cgmesModel.tripleStore());
+        new CgmesShortCircuitImporter(cgmesScModel, network).importShortcircuitData();
 
         Generator generator = network.getGenerator("_ca67be42-750e-4ebf-bfaa-24d446e59a22");
         assertNotNull(generator);
@@ -93,8 +93,8 @@ public class CgmesImporterTest {
         CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
         assertNotNull(cgmesModel);
 
-        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
-        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+        CgmesShortCircuitModel cgmesScModel = new CgmesShortCircuitModel(cgmesModel.tripleStore());
+        new CgmesShortCircuitImporter(cgmesScModel, network).importShortcircuitData();
 
         Bus bus = network.getBusBreakerView().getBus("_0472a783-c766-11e1-8775-005056c00008");
         assertNotNull(bus);
@@ -117,8 +117,8 @@ public class CgmesImporterTest {
         CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
         assertNotNull(cgmesModel);
 
-        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
-        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+        CgmesShortCircuitModel cgmesScModel = new CgmesShortCircuitModel(cgmesModel.tripleStore());
+        new CgmesShortCircuitImporter(cgmesScModel, network).importShortcircuitData();
 
         BusbarSection busbarSection = network.getBusbarSection("_d9f23c01-d924-4040-ab48-d5c36ccdf1a3");
         assertNotNull(busbarSection);
@@ -137,8 +137,8 @@ public class CgmesImporterTest {
         CgmesModel cgmesModel = cgmesModelExtension.getCgmesModel();
         assertNotNull(cgmesModel);
 
-        CgmesScModel cgmesScModel = new CgmesScModel(cgmesModel.tripleStore());
-        new CgmesScImporter(cgmesScModel, network).importShortcircuitData();
+        CgmesShortCircuitModel cgmesScModel = new CgmesShortCircuitModel(cgmesModel.tripleStore());
+        new CgmesShortCircuitImporter(cgmesScModel, network).importShortcircuitData();
 
         BusbarSection busbarSection = network.getBusbarSection("_364c9ca2-0d1d-4363-8f46-e586f8f66a8c");
         assertNotNull(busbarSection);

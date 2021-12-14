@@ -5,25 +5,24 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.powsybl.shortcircuits.extensions.importers.cgmes;
+package com.powsybl.shortcircuits.converters.cgmes;
 
 import java.util.Objects;
 
 import com.powsybl.iidm.network.Generator;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.extensions.GeneratorShortCircuitAdder;
-import com.powsybl.shortcircuits.extensions.PerUnit;
 import com.powsybl.triplestore.api.PropertyBag;
 
 /**
  * @author Luma Zamarreño <zamarrenolm at aia.es>
  * @author José Antonio Marqués <marquesja at aia.es>
  */
-class GeneratorScImporter {
+class GeneratorShortCircuitImporter {
 
     private final Network network;
 
-    GeneratorScImporter(Network network) {
+    GeneratorShortCircuitImporter(Network network) {
         this.network = Objects.requireNonNull(network);
     }
 
@@ -39,8 +38,8 @@ class GeneratorScImporter {
         double satDirectTransXpu = synchrohousMachine.asDouble("satDirectTransX");
 
         double vNominal = generator.getTerminal().getVoltageLevel().getNominalV();
-        double satDirectSubtransX = CgmesScImporterUtils.impedanceToEngineeringUnit(satDirectSubtransXpu, vNominal, PerUnit.SB);
-        double satDirectTransX = CgmesScImporterUtils.impedanceToEngineeringUnit(satDirectTransXpu, vNominal, PerUnit.SB);
+        double satDirectSubtransX = CgmesShortCircuitImporterUtils.impedanceToEngineeringUnit(satDirectSubtransXpu, vNominal, PerUnit.SB);
+        double satDirectTransX = CgmesShortCircuitImporterUtils.impedanceToEngineeringUnit(satDirectTransXpu, vNominal, PerUnit.SB);
 
         if (!Double.isNaN(satDirectSubtransX) || !Double.isNaN(satDirectTransX)) {
             GeneratorShortCircuitAdder adder = generator.newExtension(GeneratorShortCircuitAdder.class);
