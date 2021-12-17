@@ -71,6 +71,15 @@ public class ShortCircuitParametersTest {
         assertNotNull(parameters.getExtension(DummyExtension.class));
     }
 
+    @Test
+    public void testSubTransStudy() {
+        ShortCircuitParameters parameters = new ShortCircuitParameters();
+        assertFalse(parameters.isSubTransStudy());
+
+        parameters.setSubTransStudy(true);
+        assertTrue(parameters.isSubTransStudy());
+    }
+
     private static class DummyExtension extends AbstractExtension<ShortCircuitParameters> {
 
         @Override
