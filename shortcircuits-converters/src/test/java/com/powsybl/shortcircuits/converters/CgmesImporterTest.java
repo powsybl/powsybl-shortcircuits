@@ -102,9 +102,8 @@ public class CgmesImporterTest {
         IdentifiableShortCircuit busShortCircuit = bus.getExtension(IdentifiableShortCircuit.class);
         assertNotNull(busShortCircuit);
 
-        double tol = 0.000001;
-        assertEquals(0.0, busShortCircuit.getIpMin(), tol);
-        assertEquals(1000.0, busShortCircuit.getIpMax(), tol);
+        assertTrue(Double.isNaN(busShortCircuit.getIpMin()));
+        assertEquals(1000.0, busShortCircuit.getIpMax(), 0.000001);
     }
 
     @Test
@@ -146,8 +145,7 @@ public class CgmesImporterTest {
         IdentifiableShortCircuit busbarSectionShortCircuit = busbarSection.getExtension(IdentifiableShortCircuit.class);
         assertNotNull(busbarSectionShortCircuit);
 
-        double tol = 0.000001;
-        assertEquals(0.0, busbarSectionShortCircuit.getIpMin(), tol);
-        assertEquals(5000.0, busbarSectionShortCircuit.getIpMax(), tol);
+        assertTrue(Double.isNaN(busbarSectionShortCircuit.getIpMin()));
+        assertEquals(5000.0, busbarSectionShortCircuit.getIpMax(), 0.000001);
     }
 }

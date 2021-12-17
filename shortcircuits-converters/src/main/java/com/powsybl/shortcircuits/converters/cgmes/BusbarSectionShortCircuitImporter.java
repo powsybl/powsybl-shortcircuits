@@ -43,7 +43,6 @@ class BusbarSectionShortCircuitImporter {
             if (!Double.isNaN(ipMax)) {
                 busbarSection.newExtension(IdentifiableShortCircuitAdder.class)
                     .withIpMax(ipMax)
-                    .withIpMin(0.0)
                     .add();
             }
             return;
@@ -78,7 +77,6 @@ class BusbarSectionShortCircuitImporter {
         if (busShortCircuit == null) {
             bus.newExtension(IdentifiableShortCircuitAdder.class)
                 .withIpMax(ipMax)
-                .withIpMin(0.0)
                 .add();
         } else {
             if (ipMax < busShortCircuit.getIpMax()) {
