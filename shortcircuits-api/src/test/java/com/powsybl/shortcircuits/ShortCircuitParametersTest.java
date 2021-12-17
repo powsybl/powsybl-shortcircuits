@@ -73,7 +73,7 @@ public class ShortCircuitParametersTest {
 
     @Test
     public void testSubTransStudy() {
-        ShortCircuitParameters parameters = new ShortCircuitParameters();
+        ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
         assertFalse(parameters.isSubTransStudy());
 
         parameters.setSubTransStudy(true);
