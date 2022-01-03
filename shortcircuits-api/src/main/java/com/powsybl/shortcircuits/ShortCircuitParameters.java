@@ -6,15 +6,16 @@
  */
 package com.powsybl.shortcircuits;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 import com.google.common.base.Suppliers;
+import com.powsybl.commons.config.ModuleConfig;
 import com.powsybl.commons.config.PlatformConfig;
 import com.powsybl.commons.extensions.AbstractExtendable;
 import com.powsybl.commons.extensions.Extension;
 import com.powsybl.commons.extensions.ExtensionConfigLoader;
 import com.powsybl.commons.extensions.ExtensionProviders;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Generic parameters for short circuit-computations.
@@ -23,6 +24,8 @@ import com.powsybl.commons.extensions.ExtensionProviders;
  * @author Boubakeur Brahimi
  */
 public class ShortCircuitParameters extends AbstractExtendable<ShortCircuitParameters> {
+
+    private boolean subTransStudy = ShortCircuitConstants.SUBTRANS_STUDY;
 
     public interface ConfigLoader<E extends Extension<ShortCircuitParameters>>
             extends ExtensionConfigLoader<ShortCircuitParameters, E> {
@@ -41,6 +44,11 @@ public class ShortCircuitParameters extends AbstractExtendable<ShortCircuitParam
         ShortCircuitParameters parameters = new ShortCircuitParameters();
         parameters.readExtensions(platformConfig);
 
+        ModuleConfig config = platformConfig.getOptionalModuleConfig("short-circuit-parameters").orElse(null);
+        if (config != null) {
+            parameters.setSubTransStudy(config.getBooleanProperty("subTransStudy", ShortCircuitConstants.SUBTRANS_STUDY));
+        }
+
         return parameters;
     }
 
@@ -48,6 +56,15 @@ public class ShortCircuitParameters extends AbstractExtendable<ShortCircuitParam
         for (ConfigLoader provider : SUPPLIER.get().getProviders()) {
             addExtension(provider.getExtensionClass(), provider.load(platformConfig));
         }
+    }
+
+    public boolean isSubTransStudy() {
+        return subTransStudy;
+    }
+
+    public ShortCircuitParameters setSubTransStudy(boolean subTransStudy) {
+        this.subTransStudy = subTransStudy;
+        return this;
     }
 
 }

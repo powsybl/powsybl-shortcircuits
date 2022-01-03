@@ -11,12 +11,16 @@ import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
 import com.powsybl.commons.config.InMemoryPlatformConfig;
 import com.powsybl.commons.config.PlatformConfig;
+import com.powsybl.commons.config.YamlModuleConfigRepository;
 import com.powsybl.commons.extensions.AbstractExtension;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.Assert.*;
 
@@ -69,6 +73,26 @@ public class ShortCircuitParametersTest {
         assertEquals(1, parameters.getExtensions().size());
         assertNotNull(parameters.getExtensionByName("dummyExtension"));
         assertNotNull(parameters.getExtension(DummyExtension.class));
+    }
+
+    @Test
+    public void testSubTransStudy() {
+        ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
+        assertFalse(parameters.isSubTransStudy());
+
+        parameters.setSubTransStudy(true);
+        assertTrue(parameters.isSubTransStudy());
+    }
+
+    @Test
+    public void testConfigLoader() throws IOException {
+        Path cfgDir = Files.createDirectory(fileSystem.getPath("config"));
+        Path cfgFile = cfgDir.resolve("config.yml");
+
+        Files.copy(getClass().getResourceAsStream("/config.yml"), cfgFile);
+        PlatformConfig platformConfig = new PlatformConfig(new YamlModuleConfigRepository(cfgFile), cfgDir);
+        ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
+        assertTrue(parameters.isSubTransStudy());
     }
 
     private static class DummyExtension extends AbstractExtension<ShortCircuitParameters> {
