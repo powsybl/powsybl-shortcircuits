@@ -48,7 +48,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>shortcircuits-api</module>
         <module>shortcircuits-extensions</module>
     </modules>
 
