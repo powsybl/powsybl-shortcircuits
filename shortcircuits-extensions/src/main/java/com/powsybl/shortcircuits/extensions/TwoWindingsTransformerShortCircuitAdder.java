@@ -11,7 +11,7 @@ import com.powsybl.iidm.network.TwoWindingsTransformer;
 
 /**
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
- *         Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
+ * @author Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
  */
 
 public interface TwoWindingsTransformerShortCircuitAdder
