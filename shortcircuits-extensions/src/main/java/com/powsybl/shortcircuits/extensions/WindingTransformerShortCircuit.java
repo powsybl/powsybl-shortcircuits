@@ -7,41 +7,13 @@
 
 package com.powsybl.shortcircuits.extensions;
 
+import java.util.Objects;
+
 /**
  *
  * @author Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
- *
  */
 public class WindingTransformerShortCircuit {
-
-    WindingTransformerShortCircuit(ConnectionKind connectionKind) {
-        this.connectionKind = connectionKind;
-        this.excitingXo = 0.; //TODO : if ZoE not given in imput, put NaN since by default it is infinity
-        this.excitingRo = 0.; //TODO : if ZoE not given in imput, put NaN since by default it is infinity
-        this.leakageXo = 0.; //if ZoL not given in input, XoL is 0, expecting non-zero value on another winding
-        this.leakageRo = 0.;
-        this.toGroundR = 0.; //TODO : if Zg not given in imput, put NaN since by default it is infinity
-        this.toGroundX = 0.; //TODO : if Zg not given in imput, put NaN since by default it is infinity
-
-    }
-
-    WindingTransformerShortCircuit(ConnectionKind connectionKind, double leakageRo, double leakageXo) {
-        this(connectionKind);
-        this.leakageRo = leakageRo; //if ZoL not given in imput, XoL is 0, expecting non zero value on another winding
-        this.leakageXo = leakageXo;
-    }
-
-    WindingTransformerShortCircuit(ConnectionKind connectionKind, double leakageRo, double leakageXo, double excitingRo, double excitingXo) {
-        this(connectionKind, leakageRo, leakageXo);
-        this.excitingRo = excitingRo;
-        this.excitingXo = excitingXo;
-    }
-
-    WindingTransformerShortCircuit(ConnectionKind connectionKind, double roL, double xoL, double roE, double xoE, double rg, double xg) {
-        this(connectionKind, roL, xoL, roE, xoE);
-        this.toGroundR = rg;
-        this.toGroundX = xg;
-    }
 
     //  Monophased Schematic view of a Leg model:
     //
@@ -63,22 +35,69 @@ public class WindingTransformerShortCircuit {
         Z, // Zigzag
         Yn, // Wye with neutral brought out for grounding
         Zn // Zigzag with neutral brought out for grounding
-    };
+    }
 
-    private ConnectionKind connectionKind;
+    private final ConnectionKind connectionKind;
 
-    private double excitingXo; //exciting reactance (ZoE = excitingRo + j * excitingXo)  is the exciting impedance measured on the winding,
+    private final double excitingRo; //exciting resistance
+
+    private final double excitingXo; //exciting reactance (ZoE = excitingRo + j * excitingXo)  is the exciting impedance measured on the winding,
     // with all other windings on the same core open-circuited and zero sequence
     // voltage applied to the 3 phases of this winding
 
-    private double excitingRo; //exciting resistance
+    private final double leakageRo;
 
-    private double leakageXo; //leakage impedance of the winding (ZoL = leakageRo + j * leakageXo) (the full leakage impedance of a transfo the leakage impedance of other windings
+    private final double leakageXo; //leakage impedance of the winding (ZoL = leakageRo + j * leakageXo) (the full leakage impedance of a transfo the leakage impedance of other windings
 
-    private double leakageRo;
+    private final double toGroundR; // grounding resistance (if any)
 
-    private double toGroundR; // grounding resistance (if any)
+    private final double toGroundX; // grounding reactance (if any)
 
-    private double toGroundX; // grounding reactance (if any)
+    public WindingTransformerShortCircuit(ConnectionKind connectionKind, double excitingRo, double excitingXo, double leakageRo, double leakageXo, double toGroundR, double toGroundX) {
+        this.connectionKind = Objects.requireNonNull(connectionKind);
+        this.excitingRo = excitingRo;
+        this.excitingXo = excitingXo;
+        this.leakageRo = leakageRo;
+        this.leakageXo = leakageXo;
+        this.toGroundR = toGroundR;
+        this.toGroundX = toGroundX;
+    }
 
+    WindingTransformerShortCircuit(ConnectionKind connectionKind) {
+        this(connectionKind,
+                0, //TODO : if ZoE not given in imput, put NaN since by default it is infinity
+                0, //TODO : if ZoE not given in imput, put NaN since by default it is infinity
+                0, //if ZoL not given in input, XoL is 0, expecting non-zero value on another winding
+                0,
+                0, //TODO : if Zg not given in imput, put NaN since by default it is infinity
+                0); //TODO : if Zg not given in imput, put NaN since by default it is infinity
+    }
+
+    public ConnectionKind getConnectionKind() {
+        return connectionKind;
+    }
+
+    public double getExcitingRo() {
+        return excitingRo;
+    }
+
+    public double getExcitingXo() {
+        return excitingXo;
+    }
+
+    public double getLeakageRo() {
+        return leakageRo;
+    }
+
+    public double getLeakageXo() {
+        return leakageXo;
+    }
+
+    public double getToGroundR() {
+        return toGroundR;
+    }
+
+    public double getToGroundX() {
+        return toGroundX;
+    }
 }

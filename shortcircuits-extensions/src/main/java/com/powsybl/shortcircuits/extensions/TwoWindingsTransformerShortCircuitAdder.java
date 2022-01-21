@@ -22,7 +22,7 @@ public interface TwoWindingsTransformerShortCircuitAdder
         return TwoWindingsTransformerShortCircuit.class;
     }
 
-    TwoWindingsTransformerShortCircuitAdder withIsPartOfGeneratorUnit(boolean partOfGeneratorUnit);
+    TwoWindingsTransformerShortCircuitAdder withPartOfGeneratorUnit(boolean partOfGeneratorUnit);
 
     TwoWindingsTransformerShortCircuitAdder withMagneticCircuitType(TwoWindingsTransformerShortCircuit.MagneticCircuit magneticCircuitType);
 

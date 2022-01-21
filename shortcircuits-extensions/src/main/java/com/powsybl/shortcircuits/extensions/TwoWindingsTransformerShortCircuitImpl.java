@@ -10,14 +10,16 @@ package com.powsybl.shortcircuits.extensions;
 import com.powsybl.commons.extensions.AbstractExtension;
 import com.powsybl.iidm.network.TwoWindingsTransformer;
 
+import java.util.Objects;
+
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
- *         Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
+ * @author Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
  */
 public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<TwoWindingsTransformer> implements TwoWindingsTransformerShortCircuit {
 
-    private boolean isPartOfGeneratorUnit; // indicates whether the machine is part of a power station unit
+    private boolean partOfGeneratorUnit; // indicates whether the machine is part of a power station unit
 
     private WindingTransformerShortCircuit windingLeg1;
 
@@ -28,27 +30,27 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
     private TransformerTwoWindingConfiguration transformerTwoWindingConfigurationType;
 
     public TwoWindingsTransformerShortCircuitImpl(TwoWindingsTransformer twt,
-                                                  boolean isPartOfGeneratorUnit,
+                                                  boolean partOfGeneratorUnit,
                                                   WindingTransformerShortCircuit windingLeg1,
                                                   WindingTransformerShortCircuit windingLeg2,
                                                   MagneticCircuit magneticCircuitType,
                                                   TransformerTwoWindingConfiguration transformerTwoWindingConfigurationType) {
         super(twt);
-        this.isPartOfGeneratorUnit = isPartOfGeneratorUnit;
-        this.windingLeg1 = windingLeg1;
-        this.windingLeg2 = windingLeg2;
-        this.magneticCircuitType = magneticCircuitType;
-        this.transformerTwoWindingConfigurationType = transformerTwoWindingConfigurationType;
+        this.partOfGeneratorUnit = partOfGeneratorUnit;
+        this.windingLeg1 = Objects.requireNonNull(windingLeg1);
+        this.windingLeg2 = Objects.requireNonNull(windingLeg2);
+        this.magneticCircuitType = Objects.requireNonNull(magneticCircuitType);
+        this.transformerTwoWindingConfigurationType = Objects.requireNonNull(transformerTwoWindingConfigurationType);
     }
 
     @Override
     public boolean isPartOfGeneratorUnit() {
-        return isPartOfGeneratorUnit;
+        return partOfGeneratorUnit;
     }
 
     @Override
-    public TwoWindingsTransformerShortCircuit setIsPartOfGeneratorUnit(boolean partOfGeneratorUnit) {
-        isPartOfGeneratorUnit = partOfGeneratorUnit;
+    public TwoWindingsTransformerShortCircuit setPartOfGeneratorUnit(boolean partOfGeneratorUnit) {
+        this.partOfGeneratorUnit = partOfGeneratorUnit;
         return this;
     }
 
@@ -58,8 +60,8 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
     }
 
     @Override
-    public TwoWindingsTransformerShortCircuit setWindingLeg1(WindingTransformerShortCircuit w1) {
-        windingLeg1 = w1;
+    public TwoWindingsTransformerShortCircuit setWindingLeg1(WindingTransformerShortCircuit windingLeg1) {
+        this.windingLeg1 = Objects.requireNonNull(windingLeg1);
         return this;
     }
 
@@ -69,8 +71,8 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
     }
 
     @Override
-    public TwoWindingsTransformerShortCircuit setWindingLeg2(WindingTransformerShortCircuit w2) {
-        windingLeg2 = w2;
+    public TwoWindingsTransformerShortCircuit setWindingLeg2(WindingTransformerShortCircuit windingLeg2) {
+        this.windingLeg2 = Objects.requireNonNull(windingLeg2);
         return this;
     }
 
@@ -81,7 +83,7 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
 
     @Override
     public TwoWindingsTransformerShortCircuit setMagneticCircuitType(MagneticCircuit magneticCircuitType) {
-        this.magneticCircuitType = magneticCircuitType;
+        this.magneticCircuitType = Objects.requireNonNull(magneticCircuitType);
         return this;
     }
 
@@ -91,8 +93,8 @@ public class TwoWindingsTransformerShortCircuitImpl extends AbstractExtension<Tw
     }
 
     @Override
-    public TwoWindingsTransformerShortCircuit setTransformerConfigurationType(TransformerTwoWindingConfiguration transformerConfigurationType) {
-        this.transformerTwoWindingConfigurationType = transformerConfigurationType;
+    public TwoWindingsTransformerShortCircuit setTransformerConfigurationType(TransformerTwoWindingConfiguration transformerTwoWindingConfigurationType) {
+        this.transformerTwoWindingConfigurationType = Objects.requireNonNull(transformerTwoWindingConfigurationType);
         return this;
     }
 

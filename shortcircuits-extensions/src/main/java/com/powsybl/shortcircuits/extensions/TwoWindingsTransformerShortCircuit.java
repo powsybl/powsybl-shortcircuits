@@ -12,20 +12,21 @@ import com.powsybl.iidm.network.TwoWindingsTransformer;
 /**
  *
  * @author Coline Piloquet <coline.piloquet@rte-france.com>
- *         Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
- */public interface TwoWindingsTransformerShortCircuit extends Extension<TwoWindingsTransformer> {
+ * @author Jean-Baptiste Heyberger <jean-baptiste.heyberger@rte-france.com>
+ */
+public interface TwoWindingsTransformerShortCircuit extends Extension<TwoWindingsTransformer> {
 
     enum MagneticCircuit {
         // depending on the value of this enum, the excitation parameters of a winding will taken into account or not
         FREE_FLUXES,
         FORCED_FLUXES
-    };
+    }
 
     enum TransformerTwoWindingConfiguration {
         // The disposition of the Windings inside a 2 windings transformer will have an influence on how homopolar admittance terms will be computed
         SEPARATE_WINDINGS,
         AUTO_TRANSFORMER
-    };
+    }
 
     @Override
     default String getName() {
@@ -34,7 +35,7 @@ import com.powsybl.iidm.network.TwoWindingsTransformer;
 
     boolean isPartOfGeneratorUnit();
 
-    TwoWindingsTransformerShortCircuit setIsPartOfGeneratorUnit(boolean partOfGeneratorUnit);
+    TwoWindingsTransformerShortCircuit setPartOfGeneratorUnit(boolean partOfGeneratorUnit);
 
     MagneticCircuit getMagneticCircuitType();
 
@@ -51,5 +52,4 @@ import com.powsybl.iidm.network.TwoWindingsTransformer;
     WindingTransformerShortCircuit getWindingLeg2();
 
     TwoWindingsTransformerShortCircuit setWindingLeg2(WindingTransformerShortCircuit w2);
-
 }
