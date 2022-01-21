@@ -48,8 +48,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>shortcircuits-api</module>
-		<module>shortcircuits-converters</module>
+	    <module>shortcircuits-converters</module>
         <module>shortcircuits-extensions</module>
     </modules>
 
